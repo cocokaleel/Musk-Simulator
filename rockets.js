@@ -1,3 +1,15 @@
+//Rocket Images:
+var r1Thrust = new Image();
+r1Thrust.src = 'Images/Rocket Ship 1 Thrust.png';
+var r1 = new Image();
+r1.src = 'Images/Rocket Ship 1.png';
+var r2Thrust = new Image();
+r2Thrust.src = 'Images/Rocket Ship 2 Thrust.png';
+var r2 = new Image();
+r2.src = 'Images/Rocket Ship 2.png';
+
+
+
 function initializeRockets(){
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
@@ -20,7 +32,6 @@ function initializeRockets(){
   ROCKET2.tipping = false;
 
   randomizePlatform();
-
 }
 
 //for rocket1
@@ -115,7 +126,6 @@ function handleRocketMovement() {
 }
 
 //for rocket2
-
 function handleRocketMovement2() {
   if (ROCKET2.thrusting){
     ROCKET2.xacc = ROCKET2.power * Math.cos(ROCKET2.rot);
@@ -212,29 +222,59 @@ function renderRockets(context) {
   if (GAME.started){
     handleRocketMovement();
   }
-  var r1 = new Image();
+
   if (ROCKET1.thrusting){
-    r1.src = 'Rocket Ship 1 Thrust.png';
-    drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
+
+    drawRotatedImage(context, r1Thrust, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
   }
   else {
-    r1.src = 'Rocket Ship 1.png';
+
     drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
   }
 }
+
+
 //for rocket2
 function renderRockets2(context) {
   var canvas = document.getElementById('canvas');
   if (GAME.started){
     handleRocketMovement2();
   }
-  var r2 = new Image();
+
   if (ROCKET2.thrusting){
-    r2.src = 'Rocket Ship 2 Thrust.png';
-    drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
+
+    drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
   else {
-    r2.src = 'Rocket Ship 2.png';
+
     drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
+}
+
+
+
+
+
+
+//Fuel:
+var fuelBox = new Image();
+fuelBox.src = 'Images/swirl red.jpg'
+//rocket1
+function renderFuel(context){
+
+  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
+
+}
+var fuelBox = new Image();
+fuelBox.src = 'Images/swirl blue.jpg'
+//rocket2
+function renderFuel2(context){
+
+  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
+
+}
+
+function giveBackFuel(){
+  ROCKET1.fuel = 500;
+  ROCKET2.fuel = 500;
 }
