@@ -54,61 +54,22 @@ return false;
 }
 
 
-
-
-
+var background = new Image();
+background.src = 'Images/Space Background.png';
 function renderBackground(context){
-  var background = new Image();
-  background.src = 'Space Background.png';
+
   context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
 
 }
 
-function renderPlatform(context){
-  var platform = new Image();
-  platform.src = 'platform.png';
-  context.drawImage(platform, PLATFORM.x, PLATFORM.y, PLATFORM.width, PLATFORM.height);
-
-}
-function debugHitbox(context){
-  context.beginPath();
-  context.lineWidth = "6";
-  context.strokeStyle = "red";
-  context.rect(PLATFORM.x, PLATFORM.y, PLATFORM.width, PLATFORM.height);
-  context.rect (ROCKET1.x, ROCKET1.y , ROCKET1.width, ROCKET1.height);
-  context.stroke();
-}
-
-function randomizePlatform(){
-  PLATFORM.x = Math.random ()*(GAME.canvas.width-50);
-  PLATFORM.y = Math.random()*(GAME.canvas.height-50);
-
-  PLATFORM.width = Math.random()*400 +50*GAME.level;
-  PLATFORM.height = 100;
-}
-
-//rocket1
-function renderFuel(context){
-  var fuelBox = new Image();
-  fuelBox.src = 'swirl red.jpg'
-  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
-
-}
-//rocket2
-function renderFuel2(context){
-  var fuelBox = new Image();
-  fuelBox.src = 'swirl blue.jpg'
-  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
-
-}
-
-function giveBackFuel(){
-  ROCKET1.fuel = 500;
-  ROCKET2.fuel = 500;
-}
 
 
 
+
+
+
+var explosion = new Image();
+explosion.src = "Images/explosion.png";
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
@@ -152,8 +113,6 @@ function runGame() {
       renderRockets(context);
     }
     else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
-      var explosion = new Image();
-      explosion.src = "explosion.png";
       renderBackground(context);
       renderPlatform(context);
       //context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
@@ -187,8 +146,7 @@ function runGame() {
       renderRockets(context);
     }
     else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
-      var explosion = new Image();
-      explosion.src = "explosion.png";
+
       renderBackground(context);
       renderPlatform(context);
       if (GAME.mode == 2){
