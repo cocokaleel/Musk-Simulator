@@ -65,11 +65,10 @@ function handleRocketMovement() {
     giveBackFuel();
   }
 
-  if
-    (checkCollidePlatform())
+  if(checkCollidePlatform())
   {
     if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
-      GAME.death = "PLAYER 1 had too much rotation";
+      GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
       ROCKET1.tipping = true;
       ROCKET1.thrusting = false;
       GAME.started = false;
@@ -77,7 +76,7 @@ function handleRocketMovement() {
       scorePlayerOne = 0;
     }
     else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
-      GAME.death = "PLAYER 1 had too much speed";
+      GAME.death = "GAME OVER: PLAYER 1 had too much speed";
       ROCKET1.thrusting = false;
       GAME.started = false;
       GAME.level = GAME.level/2;
@@ -89,7 +88,7 @@ function handleRocketMovement() {
       ROCKET1.xvel = 0;
       GAME.death = "PLAYER 1 had an excellent landing"
       GAME.started = false;
-      GAME.level = GAME.level/2;
+      GAME.level = GAME.level++;
       scorePlayerOne = scorePlayerOne +1;
       if (scorePlayerOne>highScore){
         highScore = scorePlayerOne;
