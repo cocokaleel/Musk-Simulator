@@ -2,8 +2,8 @@ var CONTROLS = {
   running : false,
   student : {
     jumping : false
-  }
-
+  },
+  spaceCount : 0,
 };
 
 //sets up keyboard controls
@@ -12,7 +12,7 @@ document.addEventListener('keydown', function(event) {
     //w key makes rocket thrust
     case "w": ROCKET1.thrusting = true;
     break;
-    
+
     //a key turns on rotating variable and makes the rotation direction positive.
     case "a":
     if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 ){
@@ -20,12 +20,24 @@ document.addEventListener('keydown', function(event) {
       ROCKET1.rotspeed = Math.abs(ROCKET1.rotspeed);
     }
     break;
-    
+
     //d key turns on rotating variable and makes the rotation direction negative.
     case "d":
     if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 ){
       ROCKET1.rotating = true;
       ROCKET1.rotspeed = -Math.abs(ROCKET1.rotspeed);
+    }
+    break;
+
+    case " ":
+    CONTROLS.spaceCount++;
+    if(CONTROLS.spaceCount == 1)
+    {
+      Pause();
+    }
+    else {
+      Resume();
+      CONTROLS.spaceCount = 0;
     }
     break;
 
