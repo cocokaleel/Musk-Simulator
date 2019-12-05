@@ -78,7 +78,7 @@ function renderBackground(context){
 
 
 
-//Hi
+//Hello
 
 
 //EXPLOSION STUFF
