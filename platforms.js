@@ -24,3 +24,21 @@ function randomizePlatform(){
   PLATFORM.width = Math.random()*400 +50*GAME.level;
   PLATFORM.height = 100;
 }
+
+
+//rocket1
+function checkCollidePlatform(){
+  if (ROCKET1.x < PLATFORM.x + PLATFORM.width +39 && ROCKET1.x + ROCKET1.width  > PLATFORM.x +39 &&
+  ROCKET1.y < PLATFORM.y + PLATFORM.height +107 && ROCKET1.y + ROCKET1.height > PLATFORM.y+107) {
+    return true;
+}
+return false;
+}
+//ROCKET2
+function checkCollidePlatform2(){
+  if (ROCKET2.x < PLATFORM.x + PLATFORM.width +39 && ROCKET2.x + ROCKET2.width  > PLATFORM.x +39 &&
+  ROCKET2.y < PLATFORM.y + PLATFORM.height +107 && ROCKET2.y + ROCKET2.height > PLATFORM.y+107) {
+    return true;
+}
+return false;
+}
