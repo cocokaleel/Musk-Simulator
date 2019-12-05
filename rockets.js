@@ -9,10 +9,10 @@ var r2 = new Image();
 r2.src = 'Images/Rocket Ship 2.png';
 
 
-
+//intializes rockets like config.js
+//resets movement and position variables
+//useful for level sequencing
 function initializeRockets(){
-  var canvas = document.getElementById('mainCanvas');
-  var context = canvas.getContext('2d');
   ROCKET1.x = (GAME.canvas.width-ROCKET1.width)/2;
   ROCKET1.y = (GAME.canvas.height-ROCKET1.height)/2;
   ROCKET1.xvel = 0;
@@ -31,28 +31,31 @@ function initializeRockets(){
   ROCKET2.rot = Math.PI/2;
   ROCKET2.tipping = false;
 
+  //resets platform spot
   randomizePlatform();
 }
 
 //for rocket1
 function handleRocketMovement() {
+  
+  //if rocket is thrusting, it accelerates x and y components in the direction of rotation
   if (ROCKET1.thrusting){
+    ROCKET1.yacc = -ROCKET1.power * Math.sin(ROCKET1.rot)+GAME.gravity;
     ROCKET1.xacc = ROCKET1.power * Math.cos(ROCKET1.rot);
     ROCKET1.fuel -= 1;
   }
   else{
     ROCKET1.xacc = 0;
-  }
-  if (ROCKET1.thrusting){
-    ROCKET1.yacc = -ROCKET1.power * Math.sin(ROCKET1.rot)+GAME.gravity;
-  }
-  else{
     ROCKET1.yacc = GAME.gravity;
   }
+
+  //changes xy velocities based on acceleration (handles acceleration)
   ROCKET1.xvel+=ROCKET1.xacc;
   ROCKET1.yvel+=ROCKET1.yacc;
   ROCKET1.x += ROCKET1.xvel;
   ROCKET1.y += ROCKET1.yvel;
+
+  //handles main rocket running out of fuel
   if (ROCKET1.fuel == 0){
     GAME.death = "PLAYER 1 ran out of fuel";
     ROCKET1.thrusting = false;
@@ -65,6 +68,7 @@ function handleRocketMovement() {
     giveBackFuel();
   }
 
+  //HANDLES PLATFORM COLLISIONS
   if
     (checkCollidePlatform())
   {
@@ -218,7 +222,6 @@ function handleRocketMovement2() {
 
 
 function renderRockets(context) {
-  var canvas = document.getElementById('canvas');
   if (GAME.started){
     handleRocketMovement();
   }
@@ -236,7 +239,6 @@ function renderRockets(context) {
 
 //for rocket2
 function renderRockets2(context) {
-  var canvas = document.getElementById('canvas');
   if (GAME.started){
     handleRocketMovement2();
   }
@@ -256,14 +258,13 @@ function renderRockets2(context) {
 
 
 
-//Fuel:
+//Fuel image:
 var fuelBox = new Image();
 fuelBox.src = 'Images/swirl red.jpg'
-//rocket1
+
+//Draws fuel image
 function renderFuel(context){
-
   context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
-
 }
 var fuelBox = new Image();
 fuelBox.src = 'Images/swirl blue.jpg'
