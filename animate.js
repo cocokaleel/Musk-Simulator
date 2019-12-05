@@ -1,4 +1,4 @@
-/** 
+/**
  * This document deals with all animations
 */
 
@@ -19,9 +19,8 @@ function drawRotatedImage(context, image, x, y, width, height, angle) {
 //draws the rocket
 function renderRocket(context) {
   if (GAME.started){
-    handleRocketMovement();
-  }
 
+  }
   //if the rocket is thrusting, it shows the thrusting-rocket image
   //otherwise, the thrust beams are not present in the default image
   if (ROCKET1.thrusting){
@@ -36,30 +35,18 @@ function renderRocket(context) {
 //for rocket2
 function renderRocket2(context) {
   if (GAME.started){
-    handleRocketMovement2();
+
   }
 
   if (ROCKET2.thrusting){
-
     drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
   else {
-
     drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
 }
 
-//Draws fuel image
-function renderFuel(context){
-  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
-}
 
-//rocket2
-function renderFuel2(context){
-
-  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
-
-}
 
 //draws score
 function renderCurrentScore(context){
@@ -91,7 +78,7 @@ function renderBackground(context){
 
 
 
-
+//Hello
 
 
 //EXPLOSION STUFF
@@ -104,6 +91,8 @@ function runGame() {
 
     //multiplayer extra rendering
     if (GAME.mode == 2){
+			handleRocketMovement();
+			handleRocketMovement2();
       renderBackground(context);
       renderRocket(context);
       renderRocket2(context);
@@ -114,6 +103,7 @@ function runGame() {
 
     }
     else{
+			handleRocketMovement();
       //default rendering
       renderBackground(context);
       renderRocket(context);
@@ -148,7 +138,6 @@ function runGame() {
     if (CONTROLS.running){
       GAME.started = true;
     }
-
     else if (ROCKET2.tipping){
       renderBackground(context);
       renderRocket(context);
@@ -169,8 +158,6 @@ function runGame() {
     }
     if (CONTROLS.running){
       GAME.started = true;
-			giveBackFuel();
-			CONTROLS.running=false;
     }
   }
   window.requestAnimationFrame(runGame);

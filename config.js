@@ -5,7 +5,7 @@ var GAME = {
     height : 600
   },
   started : true,
-  gravity : 0.1,
+  gravity : 0.07,
   death : "",
   level : 5,
   score : 0,
@@ -28,7 +28,7 @@ var ROCKET1 = {
   yacc : 0,
   rot : Math.PI/2, //initial angle of rocket
   rotating : false, //checked in rockets.js
-  rotspeed : Math.PI/70, //a FIXED VALUE - the rocket is rotated by multiplying this variable by -1
+  rotspeed : 0.02, //a FIXED VALUE - the rocket is rotated by multiplying this variable by -1
   power : 0.3,
   tipping : false, //used to determine death
   fuel : 500 //decreases with thrust

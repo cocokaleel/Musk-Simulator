@@ -95,7 +95,7 @@ function handleRocketMovement() {
   {
     if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
       GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
-      ROCKET1.tipping = true;
+      //ROCKET1.tipping = true;
       ROCKET1.thrusting = false;
       GAME.started = false;
       GAME.level = GAME.level/2;
@@ -251,13 +251,25 @@ function handleRocketMovement2() {
 }
 
 //Fuel images:
-var fuelBox = new Image();
-fuelBox.src = 'Images/swirl red.jpg'
-var fuelBox = new Image();
-fuelBox.src = 'Images/swirl blue.jpg'
+var fuelBoxR = new Image();
+fuelBoxR.src = 'Images/fuelbar.png'
+var fuelBoxB = new Image();
+fuelBoxB.src = 'Images/swirl blue.jpg'
 
 
 function giveBackFuel(){
   ROCKET1.fuel = 500;
   ROCKET2.fuel = 500;
+}
+
+//Draws fuel image
+function renderFuel(context){
+  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
+}
+
+//rocket2
+function renderFuel2(context){
+
+  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
+
 }
