@@ -1,4 +1,4 @@
-/** 
+/**
  * This document deals with all animations
 */
 
@@ -148,7 +148,6 @@ function runGame() {
     if (CONTROLS.running){
       GAME.started = true;
     }
-
     else if (ROCKET2.tipping){
       renderBackground(context);
       renderRocket(context);
