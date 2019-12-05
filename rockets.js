@@ -140,13 +140,17 @@ function handleRocketMovement() {
     ROCKET1.xvel = 0;
   }
   if (ROCKET1.rotating){
-    ROCKET1.rot += ROCKET1.rotspeed;
-    if (ROCKET1.rot > Math.PI){
-      ROCKET1.rot = Math.PI;
-    }
-    if (ROCKET1.rot < 0){
-      ROCKET1.rot = 0;
-    }
+    rotate();
+  }
+}
+
+function rotate() {
+  ROCKET1.rot += ROCKET1.rotspeed;
+  if (ROCKET1.rot > Math.PI){
+    ROCKET1.rot = Math.PI;
+  }
+  if (ROCKET1.rot < 0){
+    ROCKET1.rot = 0;
   }
 }
 

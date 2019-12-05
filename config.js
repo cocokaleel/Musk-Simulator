@@ -5,7 +5,7 @@ var GAME = {
     height : 600
   },
   started : true,
-  gravity : 0.07,
+  gravity : 0.05,
   death : "",
   level : 5,
   score : 0,
