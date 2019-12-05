@@ -10,12 +10,13 @@ var CONTROLS = {
 document.addEventListener('keydown', function(event) {
   switch (event.key) {
     //w key makes rocket thrust
-    case "w": ROCKET1.thrusting = true;
+    case "w":
+    if(GAME.paused == false) ROCKET1.thrusting = true;
     break;
 
     //a key turns on rotating variable and makes the rotation direction positive.
     case "a":
-    if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 ){
+    if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 && (GAME.paused == false)){
       ROCKET1.rotating = true;
       ROCKET1.rotspeed = Math.abs(ROCKET1.rotspeed);
     }
@@ -23,7 +24,7 @@ document.addEventListener('keydown', function(event) {
 
     //d key turns on rotating variable and makes the rotation direction negative.
     case "d":
-    if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 ){
+    if (ROCKET1.y < GAME.canvas.height-ROCKET1.height/4 && (GAME.paused == false)){
       ROCKET1.rotating = true;
       ROCKET1.rotspeed = -Math.abs(ROCKET1.rotspeed);
     }
@@ -78,11 +79,14 @@ document.addEventListener('keydown', function(event) {
 //undoes 'on' modes when buttons aren't pressed
 document.addEventListener('keyup', function(event) {
   switch (event.key) {
-  case "w": ROCKET1.thrusting = false;
+  case "w":
+  ROCKET1.thrusting = false;
   break;
-  case "a": ROCKET1.rotating = false;
+  case "a":
+  if(GAME.paused == false) ROCKET1.rotating = false;
   break;
-  case "d": ROCKET1.rotating = false;
+  case "d":
+  if(GAME.paused == false) ROCKET1.rotating = false;
   break;
   default:
   break;
