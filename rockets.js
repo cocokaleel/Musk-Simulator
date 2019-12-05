@@ -9,6 +9,9 @@ var r2 = new Image();
 r2.src = 'Images/Rocket Ship 2.png';
 
 
+
+
+
 //intializes rockets like config.js
 //resets movement and position variables
 //useful for level sequencing
@@ -220,60 +223,12 @@ function handleRocketMovement2() {
   }
 }
 
-
-function renderRockets(context) {
-  if (GAME.started){
-    handleRocketMovement();
-  }
-
-  if (ROCKET1.thrusting){
-
-    drawRotatedImage(context, r1Thrust, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
-  }
-  else {
-
-    drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
-  }
-}
-
-
-//for rocket2
-function renderRockets2(context) {
-  if (GAME.started){
-    handleRocketMovement2();
-  }
-
-  if (ROCKET2.thrusting){
-
-    drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
-  }
-  else {
-
-    drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
-  }
-}
-
-
-
-
-
-
-//Fuel image:
+//Fuel images:
 var fuelBox = new Image();
 fuelBox.src = 'Images/swirl red.jpg'
-
-//Draws fuel image
-function renderFuel(context){
-  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
-}
 var fuelBox = new Image();
 fuelBox.src = 'Images/swirl blue.jpg'
-//rocket2
-function renderFuel2(context){
 
-  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
-
-}
 
 function giveBackFuel(){
   ROCKET1.fuel = 500;

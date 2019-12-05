@@ -12,15 +12,58 @@ function drawRotatedImage(context, image, x, y, width, height, angle) {
 	context.restore();
 }
 
+function renderRocket(context) {
+  if (GAME.started){
+    handleRocketMovement();
+  }
+
+  if (ROCKET1.thrusting){
+
+    drawRotatedImage(context, r1Thrust, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
+  }
+  else {
+
+    drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
+  }
+}
 
 
+//for rocket2
+function renderRocket2(context) {
+  if (GAME.started){
+    handleRocketMovement2();
+  }
 
+  if (ROCKET2.thrusting){
+
+    drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
+  }
+  else {
+
+    drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
+  }
+}
+
+//Draws fuel image
+function renderFuel(context){
+  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
+}
+
+//rocket2
+function renderFuel2(context){
+
+  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
+
+}
+
+//draws score
 function renderCurrentScore(context){
   context.font = "30px Arial";
   context.fillStyle = "red";
   context.fillText("Score: " + scorePlayerOne, 60, 70);
 
 }
+//draws player 2 score (Multiplayer)
 function renderCurrentScore2(context){
   context.font = "30px Arial";
   context.fillStyle = "red";
@@ -53,7 +96,7 @@ function checkCollidePlatform2(){
 return false;
 }
 
-
+//RENDERS IMAGE
 var background = new Image();
 background.src = 'Images/Space Background.png';
 function renderBackground(context){
@@ -77,8 +120,8 @@ function runGame() {
 
     if (GAME.mode == 2){
       renderBackground(context);
-      renderRockets(context);
-      renderRockets2(context);
+      renderRocket(context);
+      renderRocket2(context);
       renderPlatform(context);
       renderFuel(context);
       renderFuel2(context);
@@ -88,8 +131,8 @@ function runGame() {
     }
     else{
       renderBackground(context);
-      renderRockets(context);
-    //  renderRockets2(context);
+      renderRocket(context);
+    //  renderRocket2(context);
       renderPlatform(context);
       renderFuel(context);
     //  renderFuel2(context);
@@ -110,7 +153,7 @@ function runGame() {
         ROCKET1.tipping = false;
       }
       renderBackground(context);
-      renderRockets(context);
+      renderRocket(context);
     }
     else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
       renderBackground(context);
@@ -143,7 +186,7 @@ function runGame() {
         ROCKET2.tipping = false;
       }
       renderBackground(context);
-      renderRockets(context);
+      renderRocket(context);
     }
     else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
 
