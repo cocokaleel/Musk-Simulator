@@ -1,7 +1,7 @@
 var scorePlayerOne = 0;
 var scorePlayerTwo = 0
 var highScore = 0;
-//for rocket1
+
 
 
 function drawRotatedImage(context, image, x, y, width, height, angle) {
@@ -24,7 +24,6 @@ function renderCurrentScore(context){
 function renderCurrentScore2(context){
   context.font = "30px Arial";
   context.fillStyle = "red";
-
   context.fillText("P2 Score: " + scorePlayerTwo, 90, 100);
   context.fillText("P1 Score: " + scorePlayerOne, 90, 70);
 }
@@ -36,33 +35,11 @@ function renderHighScore(context){
 }
 
 
-//rocket1
-function checkCollidePlatform(){
-  if (ROCKET1.x < PLATFORM.x + PLATFORM.width +39 && ROCKET1.x + ROCKET1.width  > PLATFORM.x +39 &&
-  ROCKET1.y < PLATFORM.y + PLATFORM.height +107 && ROCKET1.y + ROCKET1.height > PLATFORM.y+107) {
-    return true;
-}
-return false;
-}
-//ROCKET2
-function checkCollidePlatform2(){
-  if (ROCKET2.x < PLATFORM.x + PLATFORM.width +39 && ROCKET2.x + ROCKET2.width  > PLATFORM.x +39 &&
-  ROCKET2.y < PLATFORM.y + PLATFORM.height +107 && ROCKET2.y + ROCKET2.height > PLATFORM.y+107) {
-    return true;
-}
-return false;
-}
-
-
 var background = new Image();
 background.src = 'Images/Space Background.png';
 function renderBackground(context){
-
   context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
-
 }
-
-
 
 
 
@@ -75,25 +52,23 @@ function runGame() {
   var context = canvas.getContext('2d');
   if (GAME.started) {
 
-    if (GAME.mode == 2){
-      renderBackground(context);
+    if (GAME.mode == 1){
+			renderBackground(context);
+      renderRockets(context);
+      renderPlatform(context);
+      renderFuel(context);
+      renderCurrentScore(context);
+      renderHighScore(context);
+
+    }
+    else if(GAME.mode==2){
+			renderBackground(context);
       renderRockets(context);
       renderRockets2(context);
       renderPlatform(context);
       renderFuel(context);
       renderFuel2(context);
-      //renderCurrentScore(context);
       renderCurrentScore2(context);
-      renderHighScore(context);
-    }
-    else{
-      renderBackground(context);
-      renderRockets(context);
-    //  renderRockets2(context);
-      renderPlatform(context);
-      renderFuel(context);
-    //  renderFuel2(context);
-      renderCurrentScore(context);
       renderHighScore(context);
     }
 
@@ -123,7 +98,7 @@ function runGame() {
       context.font = "30px Arial";
       context.fillStyle = "red";
       context.textAlign = "center";
-      context.fillText("Game Over: " + GAME.death, GAME.canvas.width/2, 200);
+      context.fillText(GAME.death, GAME.canvas.width/2, 200);
       context.fillText("Press R to try again", GAME.canvas.width/2, 260);
       context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
       context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
@@ -170,6 +145,8 @@ function runGame() {
     // }
     if (CONTROLS.running){
       GAME.started = true;
+			giveBackFuel();
+			CONTROLS.running=false;
     }
   }
   window.requestAnimationFrame(runGame);
