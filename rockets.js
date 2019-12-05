@@ -252,7 +252,7 @@ function handleRocketMovement2() {
 
 //Fuel images:
 var fuelBoxR = new Image();
-fuelBoxR.src = 'Images/swirl red.jpg'
+fuelBoxR.src = 'Images/fuelbar.png'
 var fuelBoxB = new Image();
 fuelBoxB.src = 'Images/swirl blue.jpg'
 
