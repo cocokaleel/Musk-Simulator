@@ -95,7 +95,7 @@ function handleRocketMovement() {
   {
     if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
       GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
-      ROCKET1.tipping = true;
+      //ROCKET1.tipping = true;
       ROCKET1.thrusting = false;
       GAME.started = false;
       GAME.level = GAME.level/2;
