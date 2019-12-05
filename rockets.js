@@ -252,9 +252,9 @@ function handleRocketMovement2() {
 
 //Fuel images:
 var fuelBoxR = new Image();
-fuelBoxR.src = 'Images/swirl red.jpg'
+fuelBoxR.src = 'Images/swirl red.png'
 var fuelBoxB = new Image();
-fuelBoxB.src = 'Images/swirl blue.jpg'
+fuelBoxB.src = 'Images/swirl blue.png'
 
 
 function giveBackFuel(){
