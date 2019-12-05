@@ -1,9 +1,13 @@
+/** 
+ * This document deals with all animations
+*/
+
 var scorePlayerOne = 0;
 var scorePlayerTwo = 0
 var highScore = 0;
 //for rocket1
 
-
+//rotates an image
 function drawRotatedImage(context, image, x, y, width, height, angle) {
 	context.save();
 	context.translate(x, y);
@@ -12,17 +16,18 @@ function drawRotatedImage(context, image, x, y, width, height, angle) {
 	context.restore();
 }
 
+//draws the rocket
 function renderRocket(context) {
   if (GAME.started){
     handleRocketMovement();
   }
 
+  //if the rocket is thrusting, it shows the thrusting-rocket image
+  //otherwise, the thrust beams are not present in the default image
   if (ROCKET1.thrusting){
-
     drawRotatedImage(context, r1Thrust, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
   }
   else {
-
     drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
   }
 }

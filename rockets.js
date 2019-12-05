@@ -1,3 +1,10 @@
+/**
+ * 
+ * THIS DOCUMENT CONTAINS THE RENDERING FUNCTIONS FOR ALL OBJECTS IN THE GAME
+ * 
+ */
+
+
 //Rocket Images:
 var r1Thrust = new Image();
 r1Thrust.src = 'Images/Rocket Ship 1 Thrust.png';

@@ -1,3 +1,7 @@
+/** 
+ * THIS DOCUMENT deals with THE PLATFORM STUFF set up in config.js
+*/
+
 //Platform Image:
 var platform = new Image();
 platform.src = 'Images/platform.png';
