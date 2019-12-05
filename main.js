@@ -1,10 +1,4 @@
-
-// Javascript Canvas Intro!
-
-/**
- *  This is called once after the HTML of the page loads
- *
- */
+//called on load of HTMl
 function Start() {
   giveBackFuel();
   initializeRockets();
