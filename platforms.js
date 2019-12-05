@@ -1,4 +1,4 @@
-/** 
+/**
  * THIS DOCUMENT deals with THE PLATFORM STUFF set up in config.js
 */
 
@@ -26,9 +26,9 @@ function debugHitbox(context){
 //initializes where the platform generates
 //changes variables after original initialization in config.js
 function randomizePlatform(){
-  PLATFORM.x = Math.random ()*(GAME.canvas.width-50);
-  PLATFORM.y = Math.random()*(GAME.canvas.height-50);
-  PLATFORM.width = Math.random()*400 +50*GAME.level;
+  PLATFORM.x = Math.random ()*(GAME.canvas.width-200)+100;
+  PLATFORM.y = Math.random ()*(GAME.canvas.height-100)+50;
+  PLATFORM.width = Math.random()*400 +100;
   PLATFORM.height = 100;
 }
 
