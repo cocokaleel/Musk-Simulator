@@ -4,14 +4,20 @@ var context = canvas.getContext('2d');
 
 //called on load of HTMl
 function Pause(){
+  GAME.paused = true;
   GAME.gravity = 0;
-  var savedX = ROCKET1.xvel;
-  var savedY = ROCKET1.yvel;
+  GAME.savedXVel = ROCKET1.xvel;
+  GAME.savedYVel = ROCKET1.yvel;
   ROCKET1.xvel=0;
   ROCKET1.yvel=0;
 }
 
-
+function Resume(){
+  GAME.paused = false;
+  GAME.gravity = 0.1;
+  ROCKET1.xvel = GAME.savedXVel;
+  ROCKET1.yvel = GAME.savedYVel;
+}
 
 function Start() {
   giveBackFuel();
