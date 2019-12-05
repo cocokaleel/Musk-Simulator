@@ -51,13 +51,13 @@ function renderRocket2(context) {
 
 //Draws fuel image
 function renderFuel(context){
-  context.drawImage(fuelBox, 10, 100, 30, ROCKET1.fuel)
+  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
 }
 
 //rocket2
 function renderFuel2(context){
 
-  context.drawImage(fuelBox, 40, 100, 30, ROCKET2.fuel)
+  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
 
 }
 
@@ -168,8 +168,6 @@ function runGame() {
     }
     if (CONTROLS.running){
       GAME.started = true;
-			giveBackFuel();
-			CONTROLS.running=false;
     }
   }
   window.requestAnimationFrame(runGame);
