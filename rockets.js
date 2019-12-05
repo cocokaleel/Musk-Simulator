@@ -47,7 +47,20 @@ function initializeRockets(){
 
 //for rocket1
 function handleRocketMovement() {
-  
+  //if rocket is tp
+  if (ROCKET1.tipping){
+    if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
+      ROCKET1.rot -= Math.abs(ROCKET1.rotspeed);
+    }
+    else if (ROCKET1.rot > Math.PI/2 && ROCKET1.rot < Math.PI){
+      ROCKET1.rot += Math.abs(ROCKET1.rotspeed);
+    }
+    else{
+      ROCKET1.tipping = false;
+    }
+  }
+
+
   //if rocket is thrusting, it accelerates x and y components in the direction of rotation
   if (ROCKET1.thrusting){
     ROCKET1.yacc = -ROCKET1.power * Math.sin(ROCKET1.rot)+GAME.gravity;
@@ -144,15 +157,24 @@ function handleRocketMovement2() {
   if (ROCKET2.thrusting){
     ROCKET2.xacc = ROCKET2.power * Math.cos(ROCKET2.rot);
     ROCKET2.fuel -= 1;
+    ROCKET2.yacc = -ROCKET2.power * Math.sin(ROCKET2.rot)+GAME.gravity;
+
   }
   else{
     ROCKET2.xacc = 0;
-  }
-  if (ROCKET2.thrusting){
-    ROCKET2.yacc = -ROCKET2.power * Math.sin(ROCKET2.rot)+GAME.gravity;
-  }
-  else{
     ROCKET2.yacc = GAME.gravity;
+  }
+
+  if (ROCKET2.tipping){
+    if (ROCKET2.rot < Math.PI/2 && ROCKET2.rot > 0){
+      ROCKET2.rot -= Math.abs(ROCKET2.rotspeed);
+    }
+    else if (ROCKET2.rot > Math.PI/2 && ROCKET2.rot < Math.PI){
+      ROCKET2.rot += Math.abs(ROCKET2.rotspeed);
+    }
+    else{
+      ROCKET2.tipping = false;
+    }
   }
   ROCKET2.xvel+=ROCKET2.xacc;
   ROCKET2.yvel+=ROCKET2.yacc;

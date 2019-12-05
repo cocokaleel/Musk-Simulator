@@ -115,7 +115,7 @@ function renderBackground(context){
 
 
 
-
+//EXPLOSION STUFF
 var explosion = new Image();
 explosion.src = "Images/explosion.png";
 function runGame() {
@@ -123,6 +123,7 @@ function runGame() {
   var context = canvas.getContext('2d');
   if (GAME.started) {
 
+    //multiplayer extra rendering
     if (GAME.mode == 2){
       renderBackground(context);
       renderRocket(context);
@@ -135,28 +136,19 @@ function runGame() {
       renderHighScore(context);
     }
     else{
+      //default rendering
       renderBackground(context);
       renderRocket(context);
-    //  renderRocket2(context);
       renderPlatform(context);
       renderFuel(context);
-    //  renderFuel2(context);
       renderCurrentScore(context);
       renderHighScore(context);
     }
 
   }
   else {
+    //deals with rocket tipping
     if (ROCKET1.tipping){
-      if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
-        ROCKET1.rot -= Math.abs(ROCKET1.rotspeed);
-      }
-      else if (ROCKET1.rot > Math.PI/2 && ROCKET1.rot < Math.PI){
-        ROCKET1.rot += Math.abs(ROCKET1.rotspeed);
-      }
-      else{
-        ROCKET1.tipping = false;
-      }
       renderBackground(context);
       renderRocket(context);
     }
@@ -181,15 +173,6 @@ function runGame() {
     }
 
     else if (ROCKET2.tipping){
-      if (ROCKET2.rot < Math.PI/2 && ROCKET2.rot > 0){
-        ROCKET2.rot -= Math.abs(ROCKET2.rotspeed);
-      }
-      else if (ROCKET2.rot > Math.PI/2 && ROCKET2.rot < Math.PI){
-        ROCKET2.rot += Math.abs(ROCKET2.rotspeed);
-      }
-      else{
-        ROCKET2.tipping = false;
-      }
       renderBackground(context);
       renderRocket(context);
     }
