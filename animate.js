@@ -40,26 +40,14 @@ function renderRocket2(context) {
   }
 
   if (ROCKET2.thrusting){
-
     drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
   else {
-
     drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
   }
 }
 
-//Draws fuel image
-function renderFuel(context){
-  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
-}
 
-//rocket2
-function renderFuel2(context){
-
-  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
-
-}
 
 //draws score
 function renderCurrentScore(context){

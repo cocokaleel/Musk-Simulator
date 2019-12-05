@@ -261,3 +261,15 @@ function giveBackFuel(){
   ROCKET1.fuel = 500;
   ROCKET2.fuel = 500;
 }
+
+//Draws fuel image
+function renderFuel(context){
+  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
+}
+
+//rocket2
+function renderFuel2(context){
+
+  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
+
+}
