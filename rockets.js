@@ -278,28 +278,21 @@ function handleRocketMovement2() {
   }
 }
 
-//Fuel images:
-var fuelBoxR = new Image();
-fuelBoxR.src = 'Images/fuelbar.png'
-var fuelBoxB = new Image();
-fuelBoxB.src = 'Images/bluefuel.png'
-
-
 function giveBackFuel(){
   ROCKET1.fuel = 500;
   ROCKET2.fuel = 500;
 }
 
-//Draws fuel image
+//Draws fuel
 function renderFuel(context){
-  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
+  context.fillStyle="rgb(173, 44, 44)";
+  context.fillRect(10,100,30,ROCKET1.fuel);
 }
 
 //rocket2
 function renderFuel2(context){
-
-  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
-
+  context.fillStyle="rgb(0, 94, 255)";
+  context.fillRect(50,100,30,ROCKET2.fuel);
 }
 
 

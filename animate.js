@@ -111,6 +111,7 @@ function runGame() {
       renderRocket2(context);
       renderPlatform(context);
       renderFuel(context);
+      renderFuel2(context);
       renderCurrentScore(context);
       renderHighScore(context);
 
