@@ -1,3 +1,5 @@
+var space_song = new Audio(); space_song.src="Audio/relaxing_space_song.mp3"; var songstart=false;
+
 var CONTROLS = {
   running : false,
   student : {
@@ -12,6 +14,7 @@ document.addEventListener('keydown', function(event) {
   switch (event.key) {
     //w key makes rocket thrust
     case "w":
+    if(!songstart){space_song.play();songstart=true;}
     if(GAME.paused == false) ROCKET1.thrusting = true;
     break;
 

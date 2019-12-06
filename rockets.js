@@ -172,7 +172,7 @@ function handleDeath1() {
     }
   }
 }
-var turtles = []; var soap = new Audio(); soap.src="Info/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
+var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle copy.png";
 
 
 //for rocket2
@@ -388,7 +388,7 @@ function collideTurtle() {
         r1.src="Images/swirl.png"; r1Thrust.src="Images/swirl.png";
       }
       else {
-          r1.src="Images/space_turtle.png"; r1Thrust.src="Images/space_turtle.png";
+          r1.src="Images/space_turtle copy.png"; r1Thrust.src="Images/space_turtle copy.png";
       }
     }
   }
