@@ -1,8 +1,6 @@
-/**
- *
- * THIS DOCUMENT CONTAINS THE RENDERING FUNCTIONS FOR ALL OBJECTS IN THE GAME
- *
- */
+
+
+
 
 
 //Rocket Images:
@@ -44,7 +42,9 @@ function initializeRockets(){
   //resets platform spot
   randomizePlatform();
 }
-
+function renderTurtles(context){
+  for(var i = 0; i < turtles.length; i++) {context.drawImage(spr_turtle,turtles[i].x,turtles[i].y,140,110);}
+}
 //for rocket1
 function handleRocketMovement() {
   //if rocket is tp
@@ -59,7 +59,7 @@ function handleRocketMovement() {
       ROCKET1.tipping = false;
     }
   }
-
+  animateTurtles();
 
   //if rocket is thrusting, it accelerates x and y components in the direction of rotation
   if (ROCKET1.thrusting){
@@ -93,39 +93,7 @@ function handleRocketMovement() {
 
   if(checkCollidePlatform())
   {
-    if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
-      GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
-      //ROCKET1.tipping = true;
-      ROCKET1.thrusting = false;
-      GAME.started = false;
-      GAME.level = GAME.level/2;
-      scorePlayerOne = 0;
-    }
-    else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
-      GAME.death = "GAME OVER: PLAYER 1 had too much speed";
-      ROCKET1.thrusting = false;
-      GAME.started = false;
-      GAME.level = GAME.level/2;
-      scorePlayerOne = 0;
-    }
-    else{
-      ROCKET1.y = PLATFORM.y-ROCKET1.height/4
-      ROCKET1.yvel = 0;
-      ROCKET1.xvel = 0;
-      GAME.death = "PLAYER 1 had an excellent landing"
-      GAME.started = false;
-      GAME.level = GAME.level++;
-      scorePlayerOne = scorePlayerOne +1;
-      if (scorePlayerOne>highScore){
-        highScore = scorePlayerOne;
-      }
-      if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
-        ROCKET1.rot += Math.abs(ROCKET1.rotspeed);
-      }
-      else if (ROCKET1.rot > Math.PI/2 && ROCKET1.rot < Math.PI){
-        ROCKET1.rot -= Math.abs(ROCKET1.rotspeed);
-      }
-    }
+    handleDeath1();
   }
   if (ROCKET1.y - ROCKET1.height/2 <0){
     ROCKET1.y = ROCKET1.height/2;
@@ -140,11 +108,11 @@ function handleRocketMovement() {
     ROCKET1.xvel = 0;
   }
   if (ROCKET1.rotating){
-    rotate();
+    rotate1();
   }
 }
 
-function rotate() {
+function rotate1() {
   ROCKET1.rot += ROCKET1.rotspeed;
   if (ROCKET1.rot > Math.PI){
     ROCKET1.rot = Math.PI;
@@ -153,6 +121,44 @@ function rotate() {
     ROCKET1.rot = 0;
   }
 }
+
+function handleDeath1() {
+  if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
+    GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
+    //ROCKET1.tipping = true;
+    ROCKET1.thrusting = false;
+    GAME.started = false;
+    GAME.level = GAME.level/2;
+    scorePlayerOne = 0;
+  }
+  else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
+    GAME.death = "GAME OVER: PLAYER 1 had too much speed";
+    ROCKET1.thrusting = false;
+    GAME.started = false;
+    GAME.level = GAME.level/2;
+    scorePlayerOne = 0;
+  }
+  else{
+    ROCKET1.y = PLATFORM.y-ROCKET1.height/4
+    ROCKET1.yvel = 0;
+    ROCKET1.xvel = 0;
+    GAME.death = "PLAYER 1 had an excellent landing"
+    GAME.started = false;
+    GAME.level = GAME.level++;
+    scorePlayerOne = scorePlayerOne +1;
+    if (scorePlayerOne>highScore){
+      highScore = scorePlayerOne;
+    }
+    if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
+      ROCKET1.rot += Math.abs(ROCKET1.rotspeed);
+    }
+    else if (ROCKET1.rot > Math.PI/2 && ROCKET1.rot < Math.PI){
+      ROCKET1.rot -= Math.abs(ROCKET1.rotspeed);
+    }
+  }
+}
+var turtles = []; var soap = new Audio(); soap.src="Info/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
+
 
 //for rocket2
 function handleRocketMovement2() {
@@ -258,7 +264,7 @@ function handleRocketMovement2() {
 var fuelBoxR = new Image();
 fuelBoxR.src = 'Images/fuelbar.jpeg'
 var fuelBoxB = new Image();
-fuelBoxB.src = 'Images/swirl blue.jpeg'
+fuelBoxB.src = 'Images/bluefuel.png'
 
 
 function giveBackFuel(){
@@ -277,3 +283,80 @@ function renderFuel2(context){
   context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Turtle() {this.x=0;this.y=Math.random()*GAME.canvas.height;}
+function addTurtle(){turtles.push(new Turtle());}
+function animateTurtles(){if(CONTROLS.start){
+  if(turtleTimer==0) {addTurtle();turtleTimer=20;}  else{turtleTimer--;}
+  for(var i = 0; i < turtles.length; i++) {turtles[i].x+=10;}
+}}
