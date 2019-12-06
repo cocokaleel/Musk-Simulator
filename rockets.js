@@ -91,8 +91,13 @@ function handleRocketMovement() {
     giveBackFuel();
   }
 
+
+
   if(checkCollidePlatform())
   {
+    handleDeath1();
+  }
+  else if(ROCKET1.y>GAME.canvas.height+200) {
     handleDeath1();
   }
   if (ROCKET1.y - ROCKET1.height/2 <0){
@@ -123,7 +128,15 @@ function rotate1() {
 }
 
 function handleDeath1() {
-  if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
+  if(ROCKET1.y>GAME.canvas.height+200) {
+    GAME.death = "GAME OVER: PLAYER 1 was sucked into a black hole!";
+    //ROCKET1.tipping = true;
+    ROCKET1.thrusting = false;
+    GAME.started = false;
+    GAME.level = GAME.level/2;
+    scorePlayerOne = 0;
+  }
+  else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
     //ROCKET1.tipping = true;
     ROCKET1.thrusting = false;
