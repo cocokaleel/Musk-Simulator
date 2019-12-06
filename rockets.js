@@ -1,9 +1,3 @@
-var turtles = [];
-
-function Turtle() {
-  this.x=x;
-  this.y=Math.random()*GAME.canvas.height;
-}
 
 
 
@@ -48,7 +42,9 @@ function initializeRockets(){
   //resets platform spot
   randomizePlatform();
 }
-
+function renderTurtles(context){
+  for(var i = 0; i < turtles.length; i++) {context.drawImage(spr_turtle,turtles[i].x,turtles[i].y,140,110);}
+}
 //for rocket1
 function handleRocketMovement() {
   //if rocket is tp
@@ -63,7 +59,7 @@ function handleRocketMovement() {
       ROCKET1.tipping = false;
     }
   }
-
+  animateTurtles();
 
   //if rocket is thrusting, it accelerates x and y components in the direction of rotation
   if (ROCKET1.thrusting){
@@ -161,6 +157,8 @@ function handleDeath1() {
     }
   }
 }
+var turtles = []; var soap = new Audio(); soap.src="Info/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
+
 
 //for rocket2
 function handleRocketMovement2() {
@@ -285,3 +283,80 @@ function renderFuel2(context){
   context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Turtle() {this.x=0;this.y=Math.random()*GAME.canvas.height;}
+function addTurtle(){turtles.push(new Turtle());}
+function animateTurtles(){if(CONTROLS.start){
+  if(turtleTimer==0) {addTurtle();turtleTimer=20;}  else{turtleTimer--;}
+  for(var i = 0; i < turtles.length; i++) {turtles[i].x+=10;}
+}}

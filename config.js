@@ -62,7 +62,8 @@ var EXPLOSION = {
   totalFrames : 23,
   frameDuration : 5,
   width : 5382,
-  height : 189
+  height : 189,
+  size : []
 };
 
 //sets up platform VARIABLES
