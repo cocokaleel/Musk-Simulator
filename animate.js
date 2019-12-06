@@ -19,9 +19,8 @@ function drawRotatedImage(context, image, x, y, width, height, angle) {
 //draws the rocket
 function renderRocket(context) {
   if (GAME.started){
-    handleRocketMovement();
-  }
 
+  }
   //if the rocket is thrusting, it shows the thrusting-rocket image
   //otherwise, the thrust beams are not present in the default image
   if (ROCKET1.thrusting){
@@ -36,7 +35,7 @@ function renderRocket(context) {
 //for rocket2
 function renderRocket2(context) {
   if (GAME.started){
-    handleRocketMovement2();
+
   }
 
   if (ROCKET2.thrusting){
@@ -79,7 +78,7 @@ function renderBackground(context){
 
 
 
-
+//Hello
 
 
 //EXPLOSION STUFF
@@ -92,6 +91,8 @@ function runGame() {
 
     //multiplayer extra rendering
     if (GAME.mode == 2){
+			handleRocketMovement();
+			handleRocketMovement2();
       renderBackground(context);
       renderRocket(context);
       renderRocket2(context);
@@ -102,6 +103,7 @@ function runGame() {
 
     }
     else{
+			handleRocketMovement();
       //default rendering
       renderBackground(context);
       renderRocket(context);
