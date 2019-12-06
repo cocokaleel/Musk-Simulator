@@ -3,10 +3,31 @@
   <head>
   <script type="text/javascript" src="config.js"></script>
   <script type="text/javascript" src="platforms.js"></script>
+  <link rel="stylesheet" href="./main.css">
+  <link href="https://fonts.googleapis.com/css?family=Codystar|Press+Start+2P&display=swap" rel="stylesheet">
   <head>
   <body onload="Start()">
-    <canvas id="mainCanvas" width="1000" height="600" style="border:1px solid black;">
-    </canvas>
+    <div class="main">
+      <p class="title big">Musk Rocket Simulator</p>
+      <div class="subsection" id="canvasDiv">
+        <canvas id="mainCanvas" width="1000" height="600">
+        </canvas>
+      </div>
+      <div class="subsection" id="instructions">
+        <p class="title">Controls:</p>
+        <p>PAUSE: press the spacebar</p>
+        <p>THRUST: hold W key</p>
+        <p>ROTATE COUNTERCLOCKWISE: hold A key</p>
+        <p>ROTATE CLOCKWISE: hold R key</p>
+        <p>RELOAD PAGE (after death): press R key</p>
+      </div>
+      <div class="subsection" id="credits">
+        <p class="title">Credits:</p>
+        <p>Creator: Alex Safari</p>
+        <p>Stage 1 coders: Dean Reiter (?), Alex Safari, Pablo Greenlee, John Cahill</p>
+        <p>Stage 2 coders: Chase van Amberg, Clay Skaggs, Monica Martell, Lawrence Li, David Arkow, Caroline (Coco) Kaleel</p>
+      </div>
+    </div>
   </body>
 
   <!-- Load the keyboard control AFTER the page has loaded -->
