@@ -1,8 +1,12 @@
-/**
- *
- * THIS DOCUMENT CONTAINS THE RENDERING FUNCTIONS FOR ALL OBJECTS IN THE GAME
- *
- */
+var turtles = [];
+
+function Turtle() {
+  this.x=x;
+  this.y=Math.random()*GAME.canvas.height;
+}
+
+
+
 
 
 //Rocket Images:
