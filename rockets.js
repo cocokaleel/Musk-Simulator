@@ -47,6 +47,7 @@ function renderTurtles(context){
 }
 //for rocket1
 function handleRocketMovement() {
+  collideTurtle();
   //if rocket is tp
   if (ROCKET1.tipping){
     if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
@@ -373,3 +374,22 @@ function animateTurtles(){if(CONTROLS.start){
   if(turtleTimer==0) {addTurtle();turtleTimer=20;}  else{turtleTimer--;}
   for(var i = 0; i < turtles.length; i++) {turtles[i].x+=10;}
 }}
+function collideTurtle() {
+  for(var i = 0 ; i < turtles.length; i++) {
+    if(Math.pow(ROCKET1.x-turtles[i].x,2)+Math.pow(ROCKET1.y-turtles[i].y,2)<=1400) {
+      if(Math.random()<.3) {
+        r1.src="Images/Rocket Ship 2.png"; r1Thrust.src="Images/Rocket Ship 2 Thrust.png";
+      }
+      else if(Math.random()<.4) {
+        r1.src="Images/Rocket Ship 1.png"; r1Thrust.src="Images/Rocket Ship 1 Thrust.png";
+      }
+      else if(Math.random()<.6) {
+        r1.src="Images/swirl.png"; r1Thrust.src="Images/swirl.png";
+      }
+      else {
+          r1.src="Images/space_turtle.png"; r1Thrust.src="Images/space_turtle.png";
+      }
+    }
+  }
+
+}
