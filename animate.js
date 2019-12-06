@@ -78,13 +78,11 @@ function renderBackground(context){
 }
 
 
-
-//Hello
-
-
 //EXPLOSION STUFF
 var explosion = new Image();
 explosion.src = "Images/explosion.png";
+
+
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
