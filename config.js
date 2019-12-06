@@ -7,6 +7,7 @@ var GAME = {
   started : true,
   gravity : 0.05,
   death : "",
+  deathQual : 1,
   level : 5,
   score : 0,
   highScore : 0,

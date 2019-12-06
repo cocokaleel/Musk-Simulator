@@ -132,9 +132,14 @@ function runGame() {
     //WHEN R is pressed, CONTROLS.running is true
     if (CONTROLS.running){
       GAME.started = true;
+      GAME.deathQual=0;
     }
-    else {
+    else if (GAME.deathQual!=0){
+      
       advanceExplosion();
+    }
+    else if (GAME.deathQual==0) {
+      renderPostWinMessage();
     }
   }
   window.requestAnimationFrame(runGame);
@@ -142,7 +147,17 @@ function runGame() {
 
 window.requestAnimationFrame(runGame);
 
-function renderPostRoundMessage() {
+function renderPostWinMessage() {
+  context.font = "30px Arial";
+  context.fillStyle = "red";
+  context.textAlign = "center";
+  context.fillText("Congrats! You landed successfully.", GAME.canvas.width/2, 200);
+  context.fillText("Press R to move on", GAME.canvas.width/2, 260);
+  context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
+  context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
+}
+
+function renderPostDeathMessage() {
   context.font = "30px Arial";
   context.fillStyle = "red";
   context.textAlign = "center";
@@ -169,6 +184,6 @@ function advanceExplosion(){
   }
   else {
     renderBackground(context);
-    renderPostRoundMessage();
+    renderPostDeathMessage();
   }
 }

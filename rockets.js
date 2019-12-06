@@ -157,6 +157,7 @@ function handleDeath1() {
     ROCKET1.yvel = 0;
     ROCKET1.xvel = 0;
     GAME.death = "PLAYER 1 had an excellent landing"
+    GAME.deathQual = 0;
     GAME.started = false;
     GAME.level = GAME.level++;
     scorePlayerOne = scorePlayerOne +1;
