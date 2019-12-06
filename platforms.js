@@ -28,7 +28,7 @@ function debugHitbox(context){
 function randomizePlatform(){
   PLATFORM.x = Math.random ()*(GAME.canvas.width-200)+100;
   PLATFORM.y = Math.random ()*(GAME.canvas.height-100)+50;
-  PLATFORM.width = Math.random()*400 +100;
+  PLATFORM.width = Math.random()*300 +100;
   PLATFORM.height = 100;
 }
 

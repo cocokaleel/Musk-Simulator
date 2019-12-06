@@ -5,12 +5,16 @@ var GAME = {
     height : 600
   },
   started : true,
-  gravity : 0.07,
+  gravity : 0.05,
   death : "",
   level : 5,
   score : 0,
   highScore : 0,
-  mode : 1
+  mode : 1,
+  paused : false,
+  savedXVel : 0,
+  savedyVel : 0,
+  paused : false,
 };
 
 //sets up initial values and variables for main rocket
