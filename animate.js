@@ -29,6 +29,7 @@ function renderRocket(context) {
   else {
     drawRotatedImage(context, r1, ROCKET1.x, ROCKET1.y, ROCKET1.width, ROCKET1.height, ROCKET1.rot);
   }
+	renderTurtles(context);
 }
 
 

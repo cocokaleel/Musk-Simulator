@@ -4,6 +4,7 @@ var CONTROLS = {
     jumping : false
   },
   spaceCount : 0,
+  start : false
 };
 
 //sets up keyboard controls
@@ -70,7 +71,9 @@ document.addEventListener('keydown', function(event) {
       GAME.mode = 2;
     }
     break;
-
+    case '=':
+    CONTROLS.start=true; soap.play();
+    break;
     default:
     break;
   }
