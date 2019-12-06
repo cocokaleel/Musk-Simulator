@@ -56,6 +56,18 @@ function renderCurrentScore(context){
   context.fillText("Score: " + scorePlayerOne, 60, 70);
 
 }
+
+//when the game is paused it will display so on the screen
+function renderPaused(context){
+	if(GAME.paused){
+		context.font = "200px Arial";
+  	context.fillStyle = "red";
+  	context.fillText("PAUSED", 520, 330);
+		context.font = "75px Arial";
+		context.fillText("Click space to resume", 515, 430);
+	}
+}
+
 //draws player 2 score (Multiplayer)
 function renderCurrentScore2(context){
   context.font = "30px Arial";
@@ -100,6 +112,7 @@ function runGame() {
       renderCurrentScore(context);
       renderHighScore(context);
 
+
     }
     else{
 			handleRocketMovement();
@@ -110,6 +123,7 @@ function runGame() {
       renderFuel(context);
       renderCurrentScore(context);
       renderHighScore(context);
+			renderPaused(context);
     }
 
   }
