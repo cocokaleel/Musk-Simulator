@@ -31,7 +31,7 @@ document.addEventListener('keydown', function(event) {
     }
     break;
 
-    case " ":
+    case "p":
     CONTROLS.spaceCount++;
     if(CONTROLS.spaceCount == 1)
     {
