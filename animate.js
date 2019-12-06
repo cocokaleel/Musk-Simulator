@@ -98,6 +98,8 @@ explosion.src = "Images/explosion.png";
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
+  
+  //GAME.started is TRUE when game is running, gets triggered FALSE at death
   if (GAME.started) {
 
     //multiplayer extra rendering
@@ -111,7 +113,6 @@ function runGame() {
       renderFuel(context);
       renderCurrentScore(context);
       renderHighScore(context);
-
 
     }
     else{
@@ -128,52 +129,46 @@ function runGame() {
 
   }
   else {
-    //deals with rocket tipping
-    if (ROCKET1.tipping){
-      renderBackground(context);
-      renderRocket(context);
-    }
-    else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
-      renderBackground(context);
-      renderPlatform(context);
-      EXPLOSION.currentFrame++;
-    }
-    else{
-      renderBackground(context);
-      context.font = "30px Arial";
-      context.fillStyle = "red";
-      context.textAlign = "center";
-      context.fillText(GAME.death, GAME.canvas.width/2, 200);
-      context.fillText("Press R to try again", GAME.canvas.width/2, 260);
-      context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
-      context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
-    }
+    //WHEN R is pressed, CONTROLS.running is true
     if (CONTROLS.running){
       GAME.started = true;
     }
-    else if (ROCKET2.tipping){
-      renderBackground(context);
-      renderRocket(context);
-    }
-    else if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
-
-      renderBackground(context);
-      renderPlatform(context);
-      if (GAME.mode == 2){
-        context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET2.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET2.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-        context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-      }
-      else{
-        context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-      }
-
-      EXPLOSION.currentFrame++;
-    }
-    if (CONTROLS.running){
-      GAME.started = true;
+    else {
+      advanceExplosion();
     }
   }
   window.requestAnimationFrame(runGame);
 }
 
 window.requestAnimationFrame(runGame);
+
+function renderPostRoundMessage() {
+  context.font = "30px Arial";
+  context.fillStyle = "red";
+  context.textAlign = "center";
+  context.fillText(GAME.death, GAME.canvas.width/2, 200);
+  context.fillText("Press R to try again", GAME.canvas.width/2, 260);
+  context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
+  context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
+}
+
+function advanceExplosion(){
+  if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){
+
+    renderBackground(context);
+    renderPlatform(context);
+    if (GAME.mode == 2){
+      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET2.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET2.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
+      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
+    }
+    else{
+      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
+    }
+
+    EXPLOSION.currentFrame++;
+  }
+  else {
+    renderBackground(context);
+    renderPostRoundMessage();
+  }
+}
