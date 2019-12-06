@@ -171,7 +171,7 @@ function handleDeath1() {
     }
   }
 }
-var turtles = []; var soap = new Audio(); soap.src="Info/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
+var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
 
 
 //for rocket2
