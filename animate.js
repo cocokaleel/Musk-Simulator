@@ -132,10 +132,8 @@ function runGame() {
     //WHEN R is pressed, CONTROLS.running is true
     if (CONTROLS.running){
       GAME.started = true;
-      GAME.deathQual=0;
     }
     else if (GAME.deathQual!=0){
-      
       advanceExplosion();
     }
     else if (GAME.deathQual==0) {

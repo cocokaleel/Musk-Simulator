@@ -136,6 +136,7 @@ function handleDeath1() {
     GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
+    GAME.deathQual=1;
   }
   else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
@@ -144,6 +145,7 @@ function handleDeath1() {
     GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
+    GAME.deathQual=1;
   }
   else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
     GAME.death = "GAME OVER: PLAYER 1 had too much speed";
@@ -151,6 +153,7 @@ function handleDeath1() {
     GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
+    GAME.deathQual=1;
   }
   else{
     ROCKET1.y = PLATFORM.y-ROCKET1.height/4
