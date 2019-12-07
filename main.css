@@ -43,3 +43,8 @@ p.title.big {
 .subsection{
     padding-left: 5%;
 }
+
+@font-face {
+    font-family: 'specialFont';
+    src: url('http://www.miketaylr.com/f/kulminoituva.ttf');
+}

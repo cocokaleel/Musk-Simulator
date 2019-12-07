@@ -51,7 +51,7 @@ function renderRocket2(context) {
 
 //draws score
 function renderCurrentScore(context){
-  context.font = "30px Arial";
+  context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.fillText("Score: " + scorePlayerOne, 60, 70);
 
@@ -60,24 +60,24 @@ function renderCurrentScore(context){
 //when the game is paused it will display so on the screen
 function renderPaused(context){
 	if(GAME.paused){
-		context.font = "200px Arial";
+		context.font = "200px Tomorrow";
   	context.fillStyle = "red";
   	context.fillText("PAUSED", 520, 330);
-		context.font = "75px Arial";
+		context.font = "75px Tomorrow";
 		context.fillText("Click p key to resume", 520, 430);
 	}
 }
 
 //draws player 2 score (Multiplayer)
 function renderCurrentScore2(context){
-  context.font = "30px Arial";
+  context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.fillText("P2 Score: " + scorePlayerTwo, 90, 100);
   context.fillText("P1 Score: " + scorePlayerOne, 90, 70);
 }
 
 function renderHighScore(context){
-  context.font = "30px Arial";
+  context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.fillText("High score: " + highScore, 800, 70);
 }
@@ -153,7 +153,7 @@ function runGame() {
 window.requestAnimationFrame(runGame);
 
 function renderPostWinMessage() {
-  context.font = "30px Arial";
+  context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.textAlign = "center";
   context.fillText("Congrats! You landed successfully.", GAME.canvas.width/2, 200);
@@ -163,7 +163,7 @@ function renderPostWinMessage() {
 }
 
 function renderPostDeathMessage() {
-  context.font = "30px Arial";
+  context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.textAlign = "center";
   context.fillText(deathMessage(GAME.death), GAME.canvas.width/2, 200);
