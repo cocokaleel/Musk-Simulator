@@ -76,7 +76,8 @@ document.addEventListener('keydown', function(event) {
     }
     break;
     case '=':
-    CONTROLS.start=true; soap.play();
+    if(!CONTROLS.start){CONTROLS.start=true; soap.play(); space_song.pause();}
+    else{CONTROLS.start=false; soap.pause();}
     break;
     default:
     break;
