@@ -129,39 +129,34 @@ function rotate1() {
 }
 
 function handleDeath1() {
+  ROCKET1.thrusting = false;
+  GAME.started = false;
   if(ROCKET1.y>GAME.canvas.height+200) {
-    GAME.death = "GAME OVER: PLAYER 1 was sucked into a black hole!";
+    GAME.death = 1;
     //ROCKET1.tipping = true;
-    ROCKET1.thrusting = false;
-    GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
     GAME.deathQual=1;
   }
   else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
-    GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
+    GAME.death = 2;
     //ROCKET1.tipping = true;
-    ROCKET1.thrusting = false;
-    GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
     GAME.deathQual=1;
   }
   else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
-    GAME.death = "GAME OVER: PLAYER 1 had too much speed";
-    ROCKET1.thrusting = false;
-    GAME.started = false;
+    GAME.death = 3;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
     GAME.deathQual=1;
   }
-  else{
+  else{ //GOOD LANDING
     ROCKET1.y = PLATFORM.y-ROCKET1.height/4
     ROCKET1.yvel = 0;
     ROCKET1.xvel = 0;
-    GAME.death = "PLAYER 1 had an excellent landing"
+    GAME.death = 0;
     GAME.deathQual = 0;
-    GAME.started = false;
     GAME.level = GAME.level++;
     scorePlayerOne = scorePlayerOne +1;
     if (scorePlayerOne>highScore){
@@ -177,104 +172,18 @@ function handleDeath1() {
 }
 var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle copy.png";
 
-
-//for rocket2
-function handleRocketMovement2() {
-  if (ROCKET2.thrusting){
-    ROCKET2.xacc = ROCKET2.power * Math.cos(ROCKET2.rot);
-    ROCKET2.fuel -= 1;
-    ROCKET2.yacc = -ROCKET2.power * Math.sin(ROCKET2.rot)+GAME.gravity;
-
+function deathMessage (number) {
+  if (number==0) {
+    return "PLAYER 1 had an excellent landing";
   }
-  else{
-    ROCKET2.xacc = 0;
-    ROCKET2.yacc = GAME.gravity;
+  else if (number==1) {
+    return "GAME OVER: PLAYER 1 was sucked into a black hole!";
   }
-
-  if (ROCKET2.tipping){
-    if (ROCKET2.rot < Math.PI/2 && ROCKET2.rot > 0){
-      ROCKET2.rot -= Math.abs(ROCKET2.rotspeed);
-    }
-    else if (ROCKET2.rot > Math.PI/2 && ROCKET2.rot < Math.PI){
-      ROCKET2.rot += Math.abs(ROCKET2.rotspeed);
-    }
-    else{
-      ROCKET2.tipping = false;
-    }
+  else if (number==2) {
+    return "GAME OVER: PLAYER 1 had too much rotation";
   }
-  ROCKET2.xvel+=ROCKET2.xacc;
-  ROCKET2.yvel+=ROCKET2.yacc;
-  ROCKET2.x += ROCKET2.xvel;
-  ROCKET2.y += ROCKET2.yvel;
-  if (ROCKET2.fuel == 0){
-    GAME.death = "PLAYER 2 ran out of fuel";
-    ROCKET2.thrusting = false;
-    GAME.started = false;
-    GAME.level = 5;
-    if (scorePlayerTwo > highScore){
-      highScore = scorePlayerTwo;
-    }
-    scorePlayerTwo = 0;
-    giveBackFuel();
-  }
-
-  if
-    (checkCollidePlatform2())
-  {
-    if (ROCKET2.rot<Math.PI/2-0.25 || ROCKET2.rot > Math.PI/2+0.25){
-      GAME.death = "PLAYER 2 had too much rotation";
-      ROCKET2.tipping = true;
-      ROCKET2.thrusting = false;
-      GAME.started = false;
-      GAME.level = GAME.level/2;
-      scorePlayerTwo = 0;
-    }
-    else if(ROCKET2.yvel > 2 || Math.abs(ROCKET2.xvel) > 2){
-      GAME.death = "PLAYER 2 too much speed";
-      ROCKET2.thrusting = false;
-      GAME.started = false;
-      GAME.level = GAME.level/2;
-      scorePlayerTwo = 0;
-    }
-    else{
-      ROCKET2.y = PLATFORM.y-ROCKET2.height/4
-      ROCKET2.yvel = 0;
-      ROCKET2.xvel = 0;
-      GAME.death = "PLAYER 2 had an excellent landing"
-      GAME.started = false;
-      GAME.level = GAME.level/2;
-      scorePlayerTwo = scorePlayerTwo +1;
-      if (scorePlayerTwo>highScore){
-        highScore = scorePlayerTwo;
-      }
-      if (ROCKET2.rot < Math.PI/2 && ROCKET2.rot > 0){
-        ROCKET2.rot += Math.abs(ROCKET2.rotspeed);
-      }
-      else if (ROCKET2.rot > Math.PI/2 && ROCKET2.rot < Math.PI){
-        ROCKET2.rot -= Math.abs(ROCKET2.rotspeed);
-      }
-    }
-  }
-  if (ROCKET2.y - ROCKET2.height/2 <0){
-    ROCKET2.y = ROCKET2.height/2;
-    ROCKET2.yvel = 0;
-  }
-  if (ROCKET2.x > GAME.canvas.width - ROCKET2.width/2){
-      ROCKET2.x = GAME.canvas.width-ROCKET2.width/2;
-      ROCKET2.xvel = 0;
-  }
-  if (ROCKET2.x - ROCKET2.width/2 <0){
-    ROCKET2.x = ROCKET2.width/2;
-    ROCKET2.xvel = 0;
-  }
-  if (ROCKET2.rotating){
-    ROCKET2.rot += ROCKET2.rotspeed;
-    if (ROCKET2.rot > Math.PI){
-      ROCKET2.rot = Math.PI;
-    }
-    if (ROCKET2.rot < 0){
-      ROCKET2.rot = 0;
-    }
+  else if (number==3) {
+    return "GAME OVER: PLAYER 1 had too much speed";
   }
 }
 
@@ -283,92 +192,21 @@ function giveBackFuel(){
   ROCKET2.fuel = 500;
 }
 
-//Draws fuel
-function renderFuel(context){
-  context.fillStyle="white";
-  context.fillRect(10,20,30,30)
-  context.fillStyle="rgb(173, 44, 44)";
-  context.fillRect(10,50,30,ROCKET1.fuel);
-  context.fillStyle="white";
-  context.fillRect(10,50+ROCKET1.fuel,30,30)
+//deathMessage: destription of death
+//qual: 0 if successful, 1 if unsuccessful
+function die(deathMessage,qual) {
+  GAME.death = deathMessage;
+  GAME.deathQual = qual;
+  GAME.started = false;
+
+  if (qual==0) {
+    //good landing
+    level++;
+  }
+  else if (qual==1) {
+    //explosion
+  }
 }
-
-//rocket2
-function renderFuel2(context){
-  context.fillStyle="white";
-  context.fillRect(50,60,30,30);
-  context.fillStyle="rgb(0, 94, 255)";
-  context.fillRect(50,90,30,ROCKET2.fuel);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function Turtle() {this.x=0;this.y=Math.random()*GAME.canvas.height;}

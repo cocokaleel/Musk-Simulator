@@ -166,7 +166,7 @@ function renderPostDeathMessage() {
   context.font = "30px Arial";
   context.fillStyle = "red";
   context.textAlign = "center";
-  context.fillText(GAME.death, GAME.canvas.width/2, 200);
+  context.fillText(deathMessage(GAME.death), GAME.canvas.width/2, 200);
   context.fillText("Press R to try again", GAME.canvas.width/2, 260);
   context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
   context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);

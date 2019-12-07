@@ -52,7 +52,6 @@ document.addEventListener('keydown', function(event) {
       initializeRockets();
       EXPLOSION.currentFrame = 0;
       GAME.started = true;
-      giveBackFuel();
     }
     break;
 
