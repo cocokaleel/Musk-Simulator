@@ -47,6 +47,7 @@ function renderTurtles(context){
 }
 //for rocket1
 function handleRocketMovement() {
+  collideTurtle();
   //if rocket is tp
   if (ROCKET1.tipping){
     if (ROCKET1.rot < Math.PI/2 && ROCKET1.rot > 0){
@@ -91,8 +92,13 @@ function handleRocketMovement() {
     giveBackFuel();
   }
 
+
+
   if(checkCollidePlatform())
   {
+    handleDeath1();
+  }
+  else if(ROCKET1.y>GAME.canvas.height+200) {
     handleDeath1();
   }
   if (ROCKET1.y - ROCKET1.height/2 <0){
@@ -123,13 +129,23 @@ function rotate1() {
 }
 
 function handleDeath1() {
-  if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
+  if(ROCKET1.y>GAME.canvas.height+200) {
+    GAME.death = "GAME OVER: PLAYER 1 was sucked into a black hole!";
+    //ROCKET1.tipping = true;
+    ROCKET1.thrusting = false;
+    GAME.started = false;
+    GAME.level = GAME.level/2;
+    scorePlayerOne = 0;
+    GAME.deathQual=1;
+  }
+  else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = "GAME OVER: PLAYER 1 had too much rotation";
     //ROCKET1.tipping = true;
     ROCKET1.thrusting = false;
     GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
+    GAME.deathQual=1;
   }
   else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
     GAME.death = "GAME OVER: PLAYER 1 had too much speed";
@@ -137,12 +153,14 @@ function handleDeath1() {
     GAME.started = false;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
+    GAME.deathQual=1;
   }
   else{
     ROCKET1.y = PLATFORM.y-ROCKET1.height/4
     ROCKET1.yvel = 0;
     ROCKET1.xvel = 0;
     GAME.death = "PLAYER 1 had an excellent landing"
+    GAME.deathQual = 0;
     GAME.started = false;
     GAME.level = GAME.level++;
     scorePlayerOne = scorePlayerOne +1;
@@ -157,7 +175,7 @@ function handleDeath1() {
     }
   }
 }
-var turtles = []; var soap = new Audio(); soap.src="Info/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle.png";
+var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle copy.png";
 
 
 //for rocket2
@@ -260,28 +278,21 @@ function handleRocketMovement2() {
   }
 }
 
-//Fuel images:
-var fuelBoxR = new Image();
-fuelBoxR.src = 'Images/fuelbar.png'
-var fuelBoxB = new Image();
-fuelBoxB.src = 'Images/bluefuel.png'
-
-
 function giveBackFuel(){
   ROCKET1.fuel = 500;
   ROCKET2.fuel = 500;
 }
 
-//Draws fuel image
+//Draws fuel
 function renderFuel(context){
-  context.drawImage(fuelBoxR, 10, 100, 30, ROCKET1.fuel)
+  context.fillStyle="rgb(173, 44, 44)";
+  context.fillRect(10,100,30,ROCKET1.fuel);
 }
 
 //rocket2
 function renderFuel2(context){
-
-  context.drawImage(fuelBoxB, 40, 100, 30, ROCKET2.fuel)
-
+  context.fillStyle="rgb(0, 94, 255)";
+  context.fillRect(50,100,30,ROCKET2.fuel);
 }
 
 
@@ -360,3 +371,22 @@ function animateTurtles(){if(CONTROLS.start){
   if(turtleTimer==0) {addTurtle();turtleTimer=20;}  else{turtleTimer--;}
   for(var i = 0; i < turtles.length; i++) {turtles[i].x+=10;}
 }}
+function collideTurtle() {
+  for(var i = 0 ; i < turtles.length; i++) {
+    if(Math.pow(ROCKET1.x-turtles[i].x,2)+Math.pow(ROCKET1.y-turtles[i].y,2)<=1400) {
+      if(Math.random()<.3) {
+        r1.src="Images/Rocket Ship 2.png"; r1Thrust.src="Images/Rocket Ship 2 Thrust.png";
+      }
+      else if(Math.random()<.4) {
+        r1.src="Images/Rocket Ship 1.png"; r1Thrust.src="Images/Rocket Ship 1 Thrust.png";
+      }
+      else if(Math.random()<.6) {
+        r1.src="Images/swirl.png"; r1Thrust.src="Images/swirl.png";
+      }
+      else {
+          r1.src="Images/space_turtle copy.png"; r1Thrust.src="Images/space_turtle copy.png";
+      }
+    }
+  }
+
+}

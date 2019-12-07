@@ -27,7 +27,12 @@ function debugHitbox(context){
 //changes variables after original initialization in config.js
 function randomizePlatform(){
   PLATFORM.x = Math.random ()*(GAME.canvas.width-200)+100;
-  PLATFORM.y = Math.random ()*(GAME.canvas.height-100)+50;
+  PLATFORM.y = Math.random ()*(GAME.canvas.height-300)+200;
+  while (!PLATFORM.y +100 > GAME.canvas.height/2 && !GAME.canvas.height/2 > PLATFORM.y-100 &&
+  !PLATFORM.x + 100 > GAME.canvas.width/2 && !GAME.canvas.width/2 > PLATFORM.x-100)
+  {
+    PLATFORM.y = PLATFORM.y+101;
+  }
   PLATFORM.width = Math.random()*300 +100;
   PLATFORM.height = 100;
 }
