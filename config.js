@@ -8,7 +8,7 @@ var GAME = {
   gravity : 0.05,
   death : "",
   deathQual : 1, //1 means explosion, 0 means good landing
-  level : 5,
+  level : 0,
   score : 0,
   highScore : 0,
   mode : 1,

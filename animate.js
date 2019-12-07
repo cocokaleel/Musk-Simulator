@@ -94,7 +94,7 @@ function renderBackground(context){
 var explosion = new Image();
 explosion.src = "Images/explosion.png";
 
-
+//runs moving game
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
@@ -140,10 +140,10 @@ function runGame() {
     if (CONTROLS.running){
       GAME.started = true;
     }
-    else if (GAME.deathQual!=0){
+    else if (GAME.death!=0){
       advanceExplosion();
     }
-    else if (GAME.deathQual==0) {
+    else if (GAME.death==0) {
       renderPostWinMessage();
     }
   }
@@ -152,25 +152,23 @@ function runGame() {
 
 window.requestAnimationFrame(runGame);
 
-function renderPostWinMessage() {
-  context.font = "30px Source Code Pro";
-  context.fillStyle = "red";
-  context.textAlign = "center";
-  context.fillText("Congrats! You landed successfully.", GAME.canvas.width/2, 200);
-  context.fillText("Press R to move on", GAME.canvas.width/2, 260);
-  context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
-  context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
-}
 
 function renderPostDeathMessage() {
   context.font = "30px Source Code Pro";
   context.fillStyle = "red";
   context.textAlign = "center";
-  context.fillText(deathMessage(GAME.death), GAME.canvas.width/2, 200);
-  context.fillText("Press R to try again", GAME.canvas.width/2, 260);
-  context.fillText("Press 1 for singleplayer", GAME.canvas.width/2, 320);
-  context.fillText("Press 2 for multiplayer", GAME.canvas.width/2, 380);
+  context.fillText(deathMessage(GAME.death), GAME.canvas.width/2, 320);
+  context.fillText("Press R to try again", GAME.canvas.width/2, 380);
 }
+
+function renderPostWinMessage() {
+  context.font = "30px Source Code Pro";
+  context.fillStyle = "red";
+  context.textAlign = "center";
+  context.fillText("Congrats! You landed successfully.", GAME.canvas.width/2, 320);
+  context.fillText("Press R to move on", GAME.canvas.width/2, 380);
+}
+
 
 function advanceExplosion(){
   if (EXPLOSION.currentFrame < EXPLOSION.totalFrames * EXPLOSION.frameDuration){

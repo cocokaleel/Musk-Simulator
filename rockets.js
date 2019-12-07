@@ -81,7 +81,7 @@ function handleRocketMovement() {
 
   //handles main rocket running out of fuel
   if (ROCKET1.fuel == 0){
-    GAME.death = "PLAYER 1 ran out of fuel";
+    GAME.death = 4;
     ROCKET1.thrusting = false;
     GAME.started = false;
     GAME.level = 5;
@@ -129,6 +129,7 @@ function rotate1() {
 }
 
 function handleDeath1() {
+  giveBackFuel();
   ROCKET1.thrusting = false;
   GAME.started = false;
   if(ROCKET1.y>GAME.canvas.height+200) {
@@ -184,6 +185,9 @@ function deathMessage (number) {
   }
   else if (number==3) {
     return "GAME OVER: PLAYER 1 had too much speed";
+  }
+  else if (number==4) {
+    "PLAYER 1 ran out of fuel";
   }
 }
 
