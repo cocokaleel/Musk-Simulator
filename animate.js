@@ -64,7 +64,7 @@ function renderPaused(context){
   	context.fillStyle = "red";
   	context.fillText("PAUSED", 520, 330);
 		context.font = "75px Arial";
-		context.fillText("Click space to resume", 515, 430);
+		context.fillText("Click p key to resume", 520, 430);
 	}
 }
 
@@ -113,6 +113,8 @@ function runGame() {
       renderFuel(context);
       renderCurrentScore(context);
       renderHighScore(context);
+			InitializeFuelCans();
+			RenderFuelCans(context);
 
 
     }
@@ -126,6 +128,9 @@ function runGame() {
       renderCurrentScore(context);
       renderHighScore(context);
 			renderPaused(context);
+			InitializeFuelCans();
+			RenderFuelCans(context);
+			handleFuelCansAnimation ();
     }
 
   }

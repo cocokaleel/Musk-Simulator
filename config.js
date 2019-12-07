@@ -11,10 +11,10 @@ var GAME = {
   score : 0,
   highScore : 0,
   mode : 1,
-  paused : false,
   savedXVel : 0,
   savedyVel : 0,
   paused : false,
+  fuelCan : [],
 };
 
 //sets up initial values and variables for main rocket
@@ -53,7 +53,8 @@ var ROCKET2 = {
   rotating : false,
   rotspeed : Math.PI/70,
   power : 0.3,
-  fuel : 500
+  fuel : 500,
+
 };
 
 //sets up explosion animation variables
