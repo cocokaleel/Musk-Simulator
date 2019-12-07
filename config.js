@@ -16,6 +16,8 @@ var GAME = {
   savedyVel : 0,
   paused : false,
   fuelCan : [],
+  levelSelect: false,
+  music : false
 };
 
 //sets up initial values and variables for main rocket

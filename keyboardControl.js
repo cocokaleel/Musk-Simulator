@@ -12,9 +12,19 @@ var CONTROLS = {
 //sets up keyboard controls
 document.addEventListener('keydown', function(event) {
   switch (event.key) {
+    case "m" :
+      if(!GAME.music){
+        space_song.play();
+        GAME.music=true;
+      }
+      else {
+        space_song.pause();
+        GAME.music=false;
+      }
+    break;
+    
     //w key makes rocket thrust
     case "w":
-    if(!songstart){space_song.play();songstart=true;}
     if(GAME.paused == false) ROCKET1.thrusting = true;
     break;
 
