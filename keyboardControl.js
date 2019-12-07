@@ -86,17 +86,17 @@ document.addEventListener('keydown', function(event) {
 //undoes 'on' modes when buttons aren't pressed
 document.addEventListener('keyup', function(event) {
   switch (event.key) {
-  case "w":
-  ROCKET1.thrusting = false;
-  break;
-  case "a":
-  if(GAME.paused == false) ROCKET1.rotating = false;
-  break;
-  case "d":
-  if(GAME.paused == false) ROCKET1.rotating = false;
-  break;
-  default:
-  break;
+    case "w":
+    ROCKET1.thrusting = false;
+    break;
+    case "a":
+    if(GAME.paused == false) ROCKET1.rotating = false;
+    break;
+    case "d":
+    if(GAME.paused == false) ROCKET1.rotating = false;
+    break;
+    default:
+    break;
   }
 });
 
