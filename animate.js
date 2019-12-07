@@ -98,7 +98,8 @@ explosion.src = "Images/explosion.png";
 function runGame() {
   var canvas = document.getElementById('mainCanvas');
   var context = canvas.getContext('2d');
-  
+
+
   //GAME.started is TRUE when game is running, gets triggered FALSE at death
   if (GAME.started) {
 
