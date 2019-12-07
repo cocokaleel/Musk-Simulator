@@ -18,18 +18,20 @@ var fuelCanAddTimer=100;
 function handleFuelCansAnimation (){
 
 if (GAME.paused==false){
-  if(fuelCanAddTimer==0){
+  if(fuelCanAddTimer==0 && GAME.fuelCan.length == 0){
     addfuelCan(Math.random()*(GAME.canvas.width -20), Math.random()*(GAME.canvas.height -20));
     fuelCanAddTimer=400;
     console.log("poop");
   }
-  fuelCanAddTimer--;
+  if(GAME.fuelCan.length == 0){
+  fuelCanAddTimer--;}
 
   for (var i = 0; i<GAME.fuelCan.length; i++){
-   if(GAME.fuelCan[i].x < (ROCKET1.x+75) && GAME.fuelCan[i].x > (ROCKET1.x-20) && GAME.fuelCan[i].y > (ROCKET1.y -100) && GAME.fuelCan[i].y < (ROCKET1.y +50))
+   //if(GAME.fuelCan[i].x < (ROCKET1.x+75) && GAME.fuelCan[i].x > (ROCKET1.x-20) && GAME.fuelCan[i].y > (ROCKET1.y -100) && GAME.fuelCan[i].y < (ROCKET1.y +50))
+   if(GAME.fuelCan[i].x + 80 > ROCKET1.x && GAME.fuelCan[i].x < ROCKET1.x + ROCKET1.width && GAME.fuelCan[i].y + 110 > ROCKET1.y && GAME.fuelCan[i].y < ROCKET1.y + ROCKET1.height - 80)
    {
      GAME.fuelCan.splice(i,1);
-
+     giveBackFuel();
    }
  }
 }

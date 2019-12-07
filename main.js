@@ -6,6 +6,8 @@ var context = canvas.getContext('2d');
 function Pause(){
   GAME.paused = true;
   GAME.gravity = 0;
+  ROCKET1.thrusting=false;
+  ROCKET1.rotating=false;
   GAME.savedXVel = ROCKET1.xvel;
   GAME.savedYVel = ROCKET1.yvel;
   ROCKET1.xvel=0;
