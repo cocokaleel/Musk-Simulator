@@ -9,6 +9,10 @@ var CONTROLS = {
   start : false
 };
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 //sets up keyboard controls
 document.addEventListener('keydown', function(event) {
   switch (event.key) {
@@ -22,7 +26,7 @@ document.addEventListener('keydown', function(event) {
         GAME.music=false;
       }
     break;
-    
+
     //w key makes rocket thrust
     case "w":
     if(GAME.paused == false) ROCKET1.thrusting = true;
@@ -62,6 +66,7 @@ document.addEventListener('keydown', function(event) {
       initializeRockets();
       EXPLOSION.currentFrame = 0;
       GAME.started = true;
+      GAME.background = getRandomInt(6);
     }
     break;
 
@@ -134,6 +139,7 @@ document.addEventListener('keydown', function(event) {
               initializeRockets();
               EXPLOSION.currentFrame = 0;
               GAME.started = true;
+              GAME.background = getRandomInt(6);
               giveBackFuel();
             }
             break;

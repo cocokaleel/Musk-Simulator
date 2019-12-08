@@ -84,9 +84,40 @@ function renderHighScore(context){
 
 
 var background = new Image();
+var background1 = new Image();
+var background2 = new Image();
+var background3 = new Image();
+var background4 = new Image();
+var background5 = new Image();
 background.src = 'Images/Space Background.png';
+background1.src = 'Images/background1.png';
+background2.src = 'Images/background2.jpeg';
+background3.src = 'Images/background3.png';
+background4.src = 'Images/background4.png';
+background5.src = 'Images/background5.jpeg';
+
+
 function renderBackground(context){
-  context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
+	switch(GAME.background) {
+		case 0:
+		context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+		case 1:
+		context.drawImage(background1, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+		case 2:
+		context.drawImage(background2, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+		case 3:
+		context.drawImage(background3, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+		case 4:
+		context.drawImage(background4, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+		case 5:
+		context.drawImage(background5, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		break;
+	}
 }
 
 
