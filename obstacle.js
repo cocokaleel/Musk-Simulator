@@ -8,14 +8,13 @@ function Obstacle(type) {
     var xTemp;
     var yTemp;
     do {
-      xTemp=300;
-      yTemp=300;
-    }while(false);
+      xTemp=Math.floor(Math.random()*(GAME.canvas.width-200))+100;
+      yTemp=Math.floor(Math.random()*(GAME.canvas.height-200))+100;
+    }while(xTemp>PLATFORM.x&&xTemp<PLATFORM.x+PLATFORM.width);
 
     this.x=xTemp;
     this.y=yTemp;
     this.rotation=0;
-
   }
   else {
 
@@ -81,12 +80,15 @@ function affectGravity(index) {
     ROCKET1.x += ROCKET1.xvel;
     ROCKET1.y += ROCKET1.yvel;
   }
-
-
-
-
 }
 
+
+function manageObstacles() {
+  while(GAME.obstacles.length>0){GAME.obstacles.pop();}
+  if(GAME.level>3) {
+    addObstacle("black hole");
+  }
+}
 
 
 function renderObstacles(context) {
@@ -101,4 +103,11 @@ function renderObstacles(context) {
       context.closePath();
     }
   }
+}
+
+function shiftObstacles(dx,dy) {
+    for (var i=0; i<GAME.obstacles.length; i++) {
+      GAME.obstacles[i].x-=dx;
+      GAME.obstacles[i].y-=dy;
+    }
 }

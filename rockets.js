@@ -41,6 +41,7 @@ function initializeRockets(){
 
   //resets platform spot
   randomizePlatform();
+  GAME.level++;
 }
 function renderTurtles(context){
   for(var i = 0; i < turtles.length; i++) {context.drawImage(spr_turtle,turtles[i].x,turtles[i].y,140,110);}
@@ -127,6 +128,7 @@ function handleRocketMovement() {
     ROCKET1.x = ROCKET1.width/2;
     PLATFORM.x-=ROCKET1.xvel;
     shiftFuelCans(ROCKET1.xvel,0);
+    shiftObstacles(ROCKET1.xvel,0);
     GAME.background.x-=ROCKET1.xvel/10;
     // if (!ROCKET1.thrusting){
     //   ROCKET1.xvel=0;
@@ -138,6 +140,7 @@ function handleRocketMovement() {
     ROCKET1.y = canvas.height-ROCKET1.height/2;
     PLATFORM.y-=ROCKET1.yvel;
     shiftFuelCans(0,ROCKET1.yvel);
+    shiftObstacles(0,ROCKET1.yvel);
     GAME.background.y-=ROCKET1.yvel/10;
   }
 
@@ -159,7 +162,7 @@ function rotate1() {
 function handleDeath1() {
   ROCKET1.thrusting = false;
   GAME.started = false;
-  
+
   if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = 2;
     //ROCKET1.tipping = true;

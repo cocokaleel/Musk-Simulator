@@ -64,6 +64,7 @@ document.addEventListener('keydown', function(event) {
     case "r":
     if (!GAME.started){
       initializeRockets();
+      manageObstacles();
       EXPLOSION.currentFrame = 0;
       GAME.started = true;
       GAME.background.num = getRandomInt(6);
@@ -137,6 +138,7 @@ document.addEventListener('keydown', function(event) {
           case "r":
             if (!GAME.started){
               initializeRockets();
+              manageObstacles();
               EXPLOSION.currentFrame = 0;
               GAME.started = true;
               GAME.background = getRandomInt(6);
