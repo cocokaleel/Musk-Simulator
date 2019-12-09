@@ -106,6 +106,7 @@ function handleRocketMovement() {
   if (ROCKET1.y - ROCKET1.height/2 <0){
     ROCKET1.y = ROCKET1.height/2;
     PLATFORM.y-=ROCKET1.yvel/5;
+    GAME.background.y-=ROCKET1.yvel/10;
     shiftFuelCans(0,ROCKET1.yvel/5);
     if (!ROCKET1.thrusting){
       ROCKET1.yvel=0;
@@ -115,6 +116,7 @@ function handleRocketMovement() {
   if (ROCKET1.x > GAME.canvas.width - ROCKET1.width/2){
     ROCKET1.x = GAME.canvas.width-ROCKET1.width/2;
     PLATFORM.x-=ROCKET1.xvel/5;
+    GAME.background.x-=ROCKET1.xvel/10;
     shiftFuelCans(ROCKET1.xvel/5,0)
     if (!ROCKET1.thrusting){
       ROCKET1.xvel=0;
@@ -125,6 +127,7 @@ function handleRocketMovement() {
     ROCKET1.x = ROCKET1.width/2;
     PLATFORM.x-=ROCKET1.xvel/5;
     shiftFuelCans(ROCKET1.xvel/5,0);
+    GAME.background.x-=ROCKET1.xvel/10;
     if (!ROCKET1.thrusting){
       ROCKET1.xvel=0;
     }
@@ -135,6 +138,7 @@ function handleRocketMovement() {
     ROCKET1.y = canvas.height-ROCKET1.height/2;
     PLATFORM.y-=ROCKET1.yvel/5;
     shiftFuelCans(0,ROCKET1.yvel/5);
+    GAME.background.y-=ROCKET1.yvel/10;
   }
 
   if (ROCKET1.rotating){

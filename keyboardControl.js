@@ -66,7 +66,7 @@ document.addEventListener('keydown', function(event) {
       initializeRockets();
       EXPLOSION.currentFrame = 0;
       GAME.started = true;
-      GAME.background = getRandomInt(6);
+      GAME.background.num = getRandomInt(6);
     }
     break;
 

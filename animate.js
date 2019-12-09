@@ -98,24 +98,24 @@ background5.src = 'Images/background5.jpeg';
 
 
 function renderBackground(context){
-	switch(GAME.background) {
+	switch(GAME.background.num) {
 		case 0:
-		context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 		case 1:
-		context.drawImage(background1, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background1, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 		case 2:
-		context.drawImage(background2, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background2, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 		case 3:
-		context.drawImage(background3, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background3, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 		case 4:
-		context.drawImage(background4, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background4, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 		case 5:
-		context.drawImage(background5, 0, 0, GAME.canvas.width, GAME.canvas.height);
+		context.drawImage(background5, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
 	}
 }
