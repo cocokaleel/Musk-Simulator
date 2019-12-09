@@ -41,7 +41,6 @@ function initializeRockets(){
 
   //resets platform spot
   randomizePlatform();
-  GAME.level++;
 }
 function renderTurtles(context){
   for(var i = 0; i < turtles.length; i++) {context.drawImage(spr_turtle,turtles[i].x,turtles[i].y,140,110);}
@@ -80,28 +79,13 @@ function handleRocketMovement() {
   ROCKET1.x += ROCKET1.xvel;
   ROCKET1.y += ROCKET1.yvel;
 
-  //handles main rocket running out of fuel
-  if (ROCKET1.fuel == 0){
-    GAME.death = 4;
-    ROCKET1.thrusting = false;
-    GAME.started = false;
-    GAME.level = 5;
-    if (scorePlayerOne > highScore){
-      highScore = scorePlayerOne;
-    }
-    scorePlayerOne = 0;
-    giveBackFuel();
-  }
 
-
-
-  if(checkCollidePlatform())
+  //||checkCollideObstacle
+  if(checkCollidePlatform()||ROCKET1.fuel==0)
   {
     handleDeath1();
   }
-  // else if(ROCKET1.y>GAME.canvas.height+200) {
-  //   handleDeath1();
-  // }
+
 
   //if rocket at top of screen
   if (ROCKET1.y - ROCKET1.height/2 <0){
@@ -163,17 +147,26 @@ function handleDeath1() {
   ROCKET1.thrusting = false;
   GAME.started = false;
 
-  if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
+  if(ROCKET1.fuel<=0) {
+    GAME.death = 4;
+    GAME.deathQual=1;
+    if (scorePlayerOne > highScore){
+      highScore = scorePlayerOne;
+    }
+    scorePlayerOne = 0;
+    giveBackFuel();
+  }
+  else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = 2;
     //ROCKET1.tipping = true;
-    GAME.level = GAME.level/2;
+    GAME.level=0;
     scorePlayerOne = 0;
     GAME.deathQual=1;
     giveBackFuel();
   }
   else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
     GAME.death = 3;
-    GAME.level = GAME.level/2;
+    GAME.level=0;
     scorePlayerOne = 0;
     GAME.deathQual=1;
     giveBackFuel();
@@ -184,7 +177,7 @@ function handleDeath1() {
     ROCKET1.xvel = 0;
     GAME.death = 0;
     GAME.deathQual = 0;
-    GAME.level = GAME.level++;
+    GAME.level++;
     scorePlayerOne = scorePlayerOne +1;
     if (scorePlayerOne>highScore){
       highScore = scorePlayerOne;
@@ -213,7 +206,7 @@ function deathMessage (number) {
     return "GAME OVER: PLAYER 1 had too much speed";
   }
   else if (number==4) {
-    "PLAYER 1 ran out of fuel";
+    return "PLAYER 1 ran out of fuel";
   }
 }
 
