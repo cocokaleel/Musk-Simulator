@@ -178,7 +178,7 @@ function deathMessage (number) {
     return "PLAYER 1 had an excellent landing";
   }
   else if (number==1) {
-    return "GAME OVER: PLAYER 1 was sucked into a black hole!";
+    return "GAME OVER: PLAYER 1 was lost in space!";
   }
   else if (number==2) {
     return "GAME OVER: PLAYER 1 had too much rotation";

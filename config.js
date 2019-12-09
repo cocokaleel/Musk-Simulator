@@ -7,7 +7,7 @@ var GAME = {
   started : true,
   gravity : 0.05,
   death : "",
-  deathQual : 1, //1 means explosion, 0 means good landing
+  deathQual : 1, //2 means obstacle impact, 1 means explosion, 0 means good landing
   level : 0,
   score : 0,
   highScore : 0,
@@ -16,6 +16,7 @@ var GAME = {
   savedyVel : 0,
   paused : false,
   fuelCan : [],
+  obstacles : [],
   levelSelect: false,
   music : false,
   background : 0

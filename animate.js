@@ -149,11 +149,15 @@ function runGame() {
 			InitializeFuelCans();
 			RenderFuelCans(context);
 
+
     }
     else{
+			context.clearRect(0,0,GAME.canvas.width,GAME.canvas.height);
 			handleRocketMovement();
+			animateObstacles();
       //default rendering
       renderBackground(context);
+			renderObstacles(context);
       renderRocket(context);
       renderPlatform(context);
       renderFuel(context);
@@ -163,6 +167,8 @@ function runGame() {
 			InitializeFuelCans();
 			RenderFuelCans(context);
 			handleFuelCansAnimation ();
+
+
     }
 
   }
