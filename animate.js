@@ -98,7 +98,9 @@ background5.src = 'Images/background5.jpeg';
 
 
 function renderBackground(context){
-	switch(GAME.background.num) {
+  context.fillStyle="black";
+  context.fillRect(0,0,GAME.canvas.width,GAME.canvas.height);
+  switch(GAME.background.num) {
 		case 0:
 		context.drawImage(background, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
@@ -117,7 +119,8 @@ function renderBackground(context){
 		case 5:
 		context.drawImage(background5, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
 		break;
-	}
+  }
+  
 }
 
 
