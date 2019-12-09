@@ -140,7 +140,6 @@ document.addEventListener('keydown', function(event) {
               EXPLOSION.currentFrame = 0;
               GAME.started = true;
               GAME.background = getRandomInt(6);
-              giveBackFuel();
             }
             break;
     default:
