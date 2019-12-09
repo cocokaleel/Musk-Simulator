@@ -98,21 +98,49 @@ function handleRocketMovement() {
   {
     handleDeath1();
   }
-  else if(ROCKET1.y>GAME.canvas.height+200) {
-    handleDeath1();
-  }
+  // else if(ROCKET1.y>GAME.canvas.height+200) {
+  //   handleDeath1();
+  // }
+
+  //if rocket at top of screen
   if (ROCKET1.y - ROCKET1.height/2 <0){
     ROCKET1.y = ROCKET1.height/2;
-    ROCKET1.yvel = 0;
+    PLATFORM.y-=ROCKET1.yvel;
+    GAME.background.y-=ROCKET1.yvel/10;
+    shiftFuelCans(0,ROCKET1.yvel);
+    if (!ROCKET1.thrusting){
+      ROCKET1.yvel=0;
+    }
   }
+  //if rocket on the right side of the screen
   if (ROCKET1.x > GAME.canvas.width - ROCKET1.width/2){
-      ROCKET1.x = GAME.canvas.width-ROCKET1.width/2;
-      ROCKET1.xvel = 0;
+    ROCKET1.x = GAME.canvas.width-ROCKET1.width/2;
+    PLATFORM.x-=ROCKET1.xvel;
+    GAME.background.x-=ROCKET1.xvel/10;
+    shiftFuelCans(ROCKET1.xvel,0)
+    // if (!ROCKET1.thrusting){
+    //   ROCKET1.xvel=0;
+    // }
   }
+  // if rocket on the left side of screen
   if (ROCKET1.x - ROCKET1.width/2 <0){
     ROCKET1.x = ROCKET1.width/2;
-    ROCKET1.xvel = 0;
+    PLATFORM.x-=ROCKET1.xvel;
+    shiftFuelCans(ROCKET1.xvel,0);
+    GAME.background.x-=ROCKET1.xvel/10;
+    // if (!ROCKET1.thrusting){
+    //   ROCKET1.xvel=0;
+    // }
   }
+
+  //if rocket on the bottom of the screen
+  if(ROCKET1.y >canvas.height-ROCKET1.height/2) {
+    ROCKET1.y = canvas.height-ROCKET1.height/2;
+    PLATFORM.y-=ROCKET1.yvel;
+    shiftFuelCans(0,ROCKET1.yvel);
+    GAME.background.y-=ROCKET1.yvel/10;
+  }
+
   if (ROCKET1.rotating){
     rotate1();
   }
@@ -129,28 +157,23 @@ function rotate1() {
 }
 
 function handleDeath1() {
-  giveBackFuel();
   ROCKET1.thrusting = false;
   GAME.started = false;
-  if(ROCKET1.y>GAME.canvas.height+200) {
-    GAME.death = 1;
-    //ROCKET1.tipping = true;
-    GAME.level = GAME.level/2;
-    scorePlayerOne = 0;
-    GAME.deathQual=1;
-  }
-  else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
+  
+  if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = 2;
     //ROCKET1.tipping = true;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
     GAME.deathQual=1;
+    giveBackFuel();
   }
   else if(ROCKET1.yvel > 2 || Math.abs(ROCKET1.xvel) > 2){
     GAME.death = 3;
     GAME.level = GAME.level/2;
     scorePlayerOne = 0;
     GAME.deathQual=1;
+    giveBackFuel();
   }
   else{ //GOOD LANDING
     ROCKET1.y = PLATFORM.y-ROCKET1.height/4

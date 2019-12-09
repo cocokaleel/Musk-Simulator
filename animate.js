@@ -98,26 +98,36 @@ background5.src = 'Images/background5.jpeg';
 
 
 function renderBackground(context){
-	switch(GAME.background) {
+  context.fillStyle="black";
+  context.fillRect(0,0,GAME.canvas.width,GAME.canvas.height);
+  var setBackground;
+  switch(GAME.background.num) {
 		case 0:
-		context.drawImage(background, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    setBackground=background;
 		break;
-		case 1:
-		context.drawImage(background1, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    case 1:
+    setBackground=background1;
 		break;
 		case 2:
-		context.drawImage(background2, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    setBackground=background2;
 		break;
 		case 3:
-		context.drawImage(background3, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    setBackground=background3;
 		break;
 		case 4:
-		context.drawImage(background4, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    setBackground=background4;
 		break;
 		case 5:
-		context.drawImage(background5, 0, 0, GAME.canvas.width, GAME.canvas.height);
+    setBackground=background5;
 		break;
-	}
+  }
+
+  context.drawImage(setBackground, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x-GAME.canvas.width,GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x+GAME.canvas.width,GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x,GAME.background.y-GAME.canvas.height, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x,GAME.background.y+GAME.canvas.height, GAME.canvas.width, GAME.canvas.height);
+
 }
 
 
@@ -183,6 +193,8 @@ function runGame() {
     else if (GAME.death==0) {
       renderPostWinMessage();
     }
+    GAME.background.x=0;
+    GAME.background.y=0;
   }
   window.requestAnimationFrame(runGame);
 }

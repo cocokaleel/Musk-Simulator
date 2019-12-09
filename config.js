@@ -19,7 +19,11 @@ var GAME = {
   obstacles : [],
   levelSelect: false,
   music : false,
-  background : 0
+  background : {
+    num : 0,
+    x : 0,
+    y : 0,
+  }
 };
 
 //sets up initial values and variables for main rocket

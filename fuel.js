@@ -80,3 +80,12 @@ function renderFuel2(context){
   context.fillStyle="rgb(0, 94, 255)";
   context.fillRect(50,90,30,ROCKET2.fuel);
 }
+
+function shiftFuelCans(dx,dy) {
+  if (GAME.fuelCan.length>0) {
+    for (var i=0; i<GAME.fuelCan.length; i++) {
+      GAME.fuelCan[i].x-=dx;
+      GAME.fuelCan[i].y-=dy;
+    }
+  }
+}
