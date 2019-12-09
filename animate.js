@@ -123,6 +123,10 @@ function renderBackground(context){
   }
 
   context.drawImage(setBackground, GAME.background.x, GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x-GAME.canvas.width,GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x+GAME.canvas.width,GAME.background.y, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x,GAME.background.y-GAME.canvas.height, GAME.canvas.width, GAME.canvas.height);
+  context.drawImage(setBackground, GAME.background.x,GAME.background.y+GAME.canvas.height, GAME.canvas.width, GAME.canvas.height);
 
 }
 

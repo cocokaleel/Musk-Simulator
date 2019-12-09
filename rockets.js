@@ -118,9 +118,9 @@ function handleRocketMovement() {
     PLATFORM.x-=ROCKET1.xvel;
     GAME.background.x-=ROCKET1.xvel/10;
     shiftFuelCans(ROCKET1.xvel,0)
-    if (!ROCKET1.thrusting){
-      ROCKET1.xvel=0;
-    }
+    // if (!ROCKET1.thrusting){
+    //   ROCKET1.xvel=0;
+    // }
   }
   // if rocket on the left side of screen
   if (ROCKET1.x - ROCKET1.width/2 <0){
@@ -128,9 +128,9 @@ function handleRocketMovement() {
     PLATFORM.x-=ROCKET1.xvel;
     shiftFuelCans(ROCKET1.xvel,0);
     GAME.background.x-=ROCKET1.xvel/10;
-    if (!ROCKET1.thrusting){
-      ROCKET1.xvel=0;
-    }
+    // if (!ROCKET1.thrusting){
+    //   ROCKET1.xvel=0;
+    // }
   }
 
   //if rocket on the bottom of the screen
