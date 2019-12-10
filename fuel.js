@@ -39,11 +39,9 @@ if (GAME.paused==false){
 
 function RenderFuelCans(context){
   context.fillStyle='blue';
-  console.log(GAME.fuelCan.length)
 
   for (var i = 0; i<GAME.fuelCan.length;i++)
   {
-    context.fillStyle='blue';
     //context.fillRect(GAME.fuelCan[i].x,GAME.fuelCan[i].y,20,20);
     context.drawImage(fuelCanPic,GAME.fuelCan[i].x,GAME.fuelCan[i].y,60,60);
   }
@@ -65,12 +63,17 @@ function InitializeFuelCans() {
 
 //Draws fuel
 function renderFuel(context){
+  if(overrideImages) {
+    context.drawImage(spr_turtle,10,20, 30, ROCKET1.fuel+60);
+    return;
+  }
+
   context.fillStyle="white";
   context.fillRect(10,20,30,30)
   context.fillStyle="rgb(173, 44, 44)";
   context.fillRect(10,50,30,ROCKET1.fuel);
   context.fillStyle="white";
-  context.fillRect(10,50+ROCKET1.fuel,30,30)
+  context.fillRect(10,50+ROCKET1.fuel,30,30);
 }
 
 //rocket2

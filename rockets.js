@@ -42,9 +42,7 @@ function initializeRockets(){
   //resets platform spot
   randomizePlatform();
 }
-function renderTurtles(context){
-  for(var i = 0; i < turtles.length; i++) {context.drawImage(spr_turtle,turtles[i].x,turtles[i].y,140,110);}
-}
+
 //for rocket1
 function handleRocketMovement() {
   collideTurtle();
@@ -199,7 +197,7 @@ function handleDeath1() {
     }
   }
 }
-var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle copy.png";
+
 
 function deathMessage (number) {
   if (number==0) {
@@ -241,31 +239,4 @@ function die(deathMessage,qual) {
   else if (qual==1) {
     //explosion
   }
-}
-
-
-function Turtle() {this.x=0;this.y=Math.random()*GAME.canvas.height;}
-function addTurtle(){turtles.push(new Turtle());}
-function animateTurtles(){if(CONTROLS.start){
-  if(turtleTimer==0) {addTurtle();turtleTimer=20;}  else{turtleTimer--;}
-  for(var i = 0; i < turtles.length; i++) {turtles[i].x+=10;}
-}}
-function collideTurtle() {
-  for(var i = 0 ; i < turtles.length; i++) {
-    if(Math.pow(ROCKET1.x-turtles[i].x,2)+Math.pow(ROCKET1.y-turtles[i].y,2)<=1400) {
-      if(Math.random()<.3) {
-        r1.src="Images/Rocket Ship 2.png"; r1Thrust.src="Images/Rocket Ship 2 Thrust.png";
-      }
-      else if(Math.random()<.4) {
-        r1.src="Images/Rocket Ship 1.png"; r1Thrust.src="Images/Rocket Ship 1 Thrust.png";
-      }
-      else if(Math.random()<.6) {
-        r1.src="Images/swirl.png"; r1Thrust.src="Images/swirl.png";
-      }
-      else {
-          r1.src="Images/space_turtle copy.png"; r1Thrust.src="Images/space_turtle copy.png";
-      }
-    }
-  }
-
 }

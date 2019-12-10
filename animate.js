@@ -101,6 +101,7 @@ function renderBackground(context){
   context.fillStyle="black";
   context.fillRect(0,0,GAME.canvas.width,GAME.canvas.height);
   var setBackground;
+	if(overrideImages){GAME.background.num=0;}
   switch(GAME.background.num) {
 		case 0:
     setBackground=background;
