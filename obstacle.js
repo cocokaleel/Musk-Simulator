@@ -11,7 +11,7 @@ function Obstacle(type) {
     do {
       xTemp=Math.floor(Math.random()*(GAME.canvas.width-100))+50;
       yTemp=Math.floor(Math.random()*(GAME.canvas.height-200))+100;
-    }while(xTemp>PLATFORM.x-40&&xTemp<PLATFORM.x+PLATFORM.width+40&&xTemp>GAME.canvas.width/2-70&&xTemp<GAME.canvas.width/2+70);
+    }while((xTemp>PLATFORM.x-40&&xTemp<PLATFORM.x+PLATFORM.width+40)||(xTemp>GAME.canvas.width/2-70&&xTemp<GAME.canvas.width/2+70));
 
     this.x=xTemp;
     this.y=yTemp;
