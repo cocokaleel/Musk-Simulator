@@ -81,7 +81,7 @@ function handleRocketMovement() {
 
 
   //||checkCollideObstacle
-  if(checkCollidePlatform()||ROCKET1.fuel==0)
+  if(checkCollidePlatform()||ROCKET1.fuel==0||checkCollideBlackHole())
   {
     handleDeath1();
   }
@@ -157,6 +157,14 @@ function handleDeath1() {
     scorePlayerOne = 0;
     giveBackFuel();
   }
+  else if(checkCollideBlackHole()) {
+    GAME.death = 5;
+    //ROCKET1.tipping = true;
+    GAME.level=0;
+    scorePlayerOne = 0;
+    GAME.deathQual=1;
+    giveBackFuel();
+  }
   else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
     GAME.death = 2;
     //ROCKET1.tipping = true;
@@ -208,6 +216,9 @@ function deathMessage (number) {
   }
   else if (number==4) {
     return "GAME OVER: PLAYER 1 ran out of fuel";
+  }
+  else if(number==5) {
+    return "ded to infinite space";
   }
 }
 

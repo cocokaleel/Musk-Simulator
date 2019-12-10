@@ -95,6 +95,18 @@ function affectGravity(index) {
   }
 }
 
+function checkCollideBlackHole() {
+  for(var o = 0; o < GAME.obstacles.length; o++) {
+    if(GAME.obstacles[o].type=="black hole") {
+      if(Math.sqrt(Math.pow(GAME.obstacles[o].x-ROCKET1.x,2)+Math.pow(GAME.obstacles[o].y-ROCKET1.y,2))<=20) {
+        return true;
+      }
+
+    }
+  }
+  return false;
+}
+
 
 function manageObstacles() {
   while(GAME.obstacles.length>0){GAME.obstacles.pop();}
