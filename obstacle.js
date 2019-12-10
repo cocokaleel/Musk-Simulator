@@ -19,9 +19,9 @@ function Obstacle(type) {
   }
   else if(type=="asteroid") {
     this.x=0;
-    this.y=0;
+    this.y=Math.floor(Math.random()*(GAME.canvas.height-100))+50;
     this.rotation=0;
-    this.speed=0;
+    this.speed=2;
   }
   else {
 
@@ -32,14 +32,13 @@ function addObstacle(type) {
   GAME.obstacles.push(new Obstacle(type));
 }
 
+
+var asteroidTimer = 50;
 function animateObstacles() {
   for(var o = 0; o < GAME.obstacles.length; o++) {
     if(GAME.obstacles[o].type=="black hole") {
-
       GAME.obstacles[o].rotation+=0.01;
       affectGravity(o);
-
-
     }
     else if(GAME.obstacles[o].type=="asteroid") {
       GAME.obstacles[o].x+=GAME.obstacles[o].speed;
@@ -99,8 +98,13 @@ function affectGravity(index) {
 
 function manageObstacles() {
   while(GAME.obstacles.length>0){GAME.obstacles.pop();}
-  if(GAME.level>3) {
+  //Manage black hole generation
+  if(GAME.level>0) {
     addObstacle("black hole");
+  }
+  //Manage asteroid generation
+  if(GAME.level>0) {
+      addObstacle("asteroid");
   }
 }
 

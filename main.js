@@ -22,7 +22,6 @@ function Resume(){
 }
 
 function Start() {
-  addObstacle("black hole");
   giveBackFuel();
   initializeRockets();
 }
