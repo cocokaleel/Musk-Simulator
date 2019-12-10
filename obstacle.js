@@ -1,4 +1,5 @@
 var spr_blackhole = new Image(); spr_blackhole.src="Images/blackhole.png";
+var spr_asteroid = new Image(); spr_asteroid.src="Images/asteroid.png";
 
 
 function Obstacle(type) {
@@ -8,13 +9,19 @@ function Obstacle(type) {
     var xTemp;
     var yTemp;
     do {
-      xTemp=Math.floor(Math.random()*(GAME.canvas.width-200))+100;
+      xTemp=Math.floor(Math.random()*(GAME.canvas.width-100))+50;
       yTemp=Math.floor(Math.random()*(GAME.canvas.height-200))+100;
-    }while(xTemp>PLATFORM.x&&xTemp<PLATFORM.x+PLATFORM.width);
+    }while(xTemp>PLATFORM.x-40&&xTemp<PLATFORM.x+PLATFORM.width+40&&xTemp>GAME.canvas.width/2-70&&xTemp<GAME.canvas.width/2+70);
 
     this.x=xTemp;
     this.y=yTemp;
     this.rotation=0;
+  }
+  else if(type=="asteroid") {
+    this.x=0;
+    this.y=0;
+    this.rotation=0;
+    this.speed=0;
   }
   else {
 
@@ -34,6 +41,10 @@ function animateObstacles() {
 
 
     }
+    else if(GAME.obstacles[o].type=="asteroid") {
+      GAME.obstacles[o].x+=GAME.obstacles[o].speed;
+      GAME.obstacles[o].rotation+=0.01*GAME.obstacles[o].speed;
+    }
     else {
 
     }
@@ -51,11 +62,12 @@ function affectGravity(index) {
   ROCKET1.xvel-=ROCKET1.xacc;
   ROCKET1.yvel-=ROCKET1.yacc;
 
-
-
+  //Perform calculations
   xDirection=(GAME.obstacles[index].x-ROCKET1.x)/Math.abs(GAME.obstacles[index].x-ROCKET1.x);
   yDirection=(GAME.obstacles[index].y-ROCKET1.y)/Math.abs(GAME.obstacles[index].y-ROCKET1.y);
   distance=Math.sqrt(Math.pow(GAME.obstacles[index].x-ROCKET1.x,2)+Math.pow(GAME.obstacles[index].y-ROCKET1.y,2));
+
+  //Apply gravity effect
   if(distance>20) {
     if(distance>1000) {
 
@@ -74,11 +86,13 @@ function affectGravity(index) {
       ROCKET1.yacc+=yDirection*0.05;
     }
 
-
     ROCKET1.xvel+=ROCKET1.xacc;
     ROCKET1.yvel+=ROCKET1.yacc;
     ROCKET1.x += ROCKET1.xvel;
     ROCKET1.y += ROCKET1.yvel;
+  }
+  else {
+
   }
 }
 
@@ -95,12 +109,9 @@ function renderObstacles(context) {
   for(var o = 0; o < GAME.obstacles.length; o++) {
     if(GAME.obstacles[o].type=="black hole") {
       drawRotatedImage(context,spr_blackhole,GAME.obstacles[o].x,GAME.obstacles[o].y,150,150, GAME.obstacles[o].rotation);
-      context.beginPath();
-      context.strokeStyle='red';
-		  context.moveTo(GAME.obstacles[o].x,GAME.obstacles[o].y);
-		  context.lineTo(ROCKET1.x,ROCKET1.y);
-		  context.stroke();
-      context.closePath();
+    }
+    else if(GAME.obstacles[o].type=="asteroid") {
+      drawRotatedImage(context,spr_asteroid,GAME.obstacles[o].x,GAME.obstacles[o].y,80,80, GAME.obstacles[o].rotation);
     }
   }
 }

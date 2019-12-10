@@ -149,6 +149,7 @@ function handleDeath1() {
 
   if(ROCKET1.fuel<=0) {
     GAME.death = 4;
+    GAME.level = 0;
     GAME.deathQual=1;
     if (scorePlayerOne > highScore){
       highScore = scorePlayerOne;
@@ -206,7 +207,7 @@ function deathMessage (number) {
     return "GAME OVER: PLAYER 1 had too much speed";
   }
   else if (number==4) {
-    return "PLAYER 1 ran out of fuel";
+    return "GAME OVER: PLAYER 1 ran out of fuel";
   }
 }
 
