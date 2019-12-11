@@ -33,22 +33,6 @@ function renderRocket(context) {
 }
 
 
-//for rocket2
-function renderRocket2(context) {
-  if (GAME.started){
-
-  }
-
-  if (ROCKET2.thrusting){
-    drawRotatedImage(context, r2Thrust, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
-  }
-  else {
-    drawRotatedImage(context, r2, ROCKET2.x, ROCKET2.y, ROCKET2.width, ROCKET2.height, ROCKET2.rot);
-  }
-}
-
-
-
 //draws score
 function renderCurrentScore(context){
   context.font = "30px Source Code Pro";
@@ -143,45 +127,22 @@ function runGame() {
 
 
   //GAME.started is TRUE when game is running, gets triggered FALSE at death
-  if (GAME.started) {
-
-    //multiplayer extra rendering
-    if (GAME.mode == 2){
-			handleRocketMovement();
-			handleRocketMovement2();
-      renderBackground(context);
-      renderRocket(context);
-      renderRocket2(context);
-      renderPlatform(context);
-      renderFuel(context);
-      renderFuel2(context);
-      renderCurrentScore(context);
-      renderHighScore(context);
-			InitializeFuelCans();
-			RenderFuelCans(context);
-
-
-    }
-    else{
-			context.clearRect(0,0,GAME.canvas.width,GAME.canvas.height);
-			handleRocketMovement();
-			animateObstacles();
-      //default rendering
-      renderBackground(context);
-			renderObstacles(context);
-      renderRocket(context);
-      renderPlatform(context);
-      renderFuel(context);
-      renderCurrentScore(context);
-      renderHighScore(context);
-			renderPaused(context);
-			InitializeFuelCans();
-			RenderFuelCans(context);
-			handleFuelCansAnimation ();
-
-
-    }
-
+  if (GAME.started) { 
+    context.clearRect(0,0,GAME.canvas.width,GAME.canvas.height);
+    handleRocketMovement();
+    animateObstacles();
+    //default rendering
+    renderBackground(context);
+    renderObstacles(context);
+    renderRocket(context);
+    renderPlatform(context);
+    renderFuel(context);
+    renderCurrentScore(context);
+    renderHighScore(context);
+    renderPaused(context);
+    InitializeFuelCans();
+    RenderFuelCans(context);
+    handleFuelCansAnimation ();
   }
   else {
     //WHEN R is pressed, CONTROLS.running is true
@@ -225,13 +186,7 @@ function advanceExplosion(){
 
     renderBackground(context);
     renderPlatform(context);
-    if (GAME.mode == 2){
-      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET2.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET2.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-    }
-    else{
-      context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
-    }
+    context.drawImage(explosion,EXPLOSION.width / EXPLOSION.totalFrames * Math.floor(EXPLOSION.currentFrame/EXPLOSION.frameDuration),0,EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height, ROCKET1.x-(EXPLOSION.width / (2 * EXPLOSION.totalFrames)), ROCKET1.y-(EXPLOSION.height/1.3), EXPLOSION.width / EXPLOSION.totalFrames, EXPLOSION.height);
 
     EXPLOSION.currentFrame++;
   }

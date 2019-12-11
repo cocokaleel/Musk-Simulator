@@ -2,6 +2,8 @@
 var canvas = document.getElementById('mainCanvas');
 var context = canvas.getContext('2d');
 
+M.toast({html: 'I am a toast!'});
+
 //called on load of HTMl
 function Pause(){
   GAME.paused = true;

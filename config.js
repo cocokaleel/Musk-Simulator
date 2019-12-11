@@ -46,26 +46,6 @@ var ROCKET1 = {
   fuel : 500 //decreases with thrust
 };
 
-//sets up initial values and variables for secondary rocket
-//used in MULTIPLAYER ONLY
-var ROCKET2 = {
-  x : 0,
-  y : 0,
-  width : 80,
-  height : 120,
-  thrusting : false,
-  xvel : 0,
-  xacc : 0,
-  yvel : 0,
-  yacc : 0,
-  rot : Math.PI/2,
-  rotating : false,
-  rotspeed : Math.PI/70,
-  power : 0.3,
-  fuel : 500,
-
-};
-
 //sets up explosion animation variables
 var EXPLOSION = {
   currentFrame : 0,

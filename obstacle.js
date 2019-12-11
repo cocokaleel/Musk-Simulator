@@ -1,5 +1,5 @@
 var spr_blackhole = new Image(); spr_blackhole.src="Images/blackhole.png";
-var spr_asteroid = new Image(); spr_asteroid.src="Images/blackhole.png";
+var spr_asteroid = new Image(); spr_asteroid.src="Images/tumbleweedman.png";
 
 
 function Obstacle(type) {

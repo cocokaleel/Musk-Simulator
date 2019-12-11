@@ -30,15 +30,6 @@ function initializeRockets(){
   ROCKET1.rot = Math.PI/2;
   ROCKET1.tipping = false;
 
-  ROCKET2.x = (GAME.canvas.width-ROCKET2.width)/2;
-  ROCKET2.y = (GAME.canvas.height-ROCKET2.height)/2;
-  ROCKET2.xvel = 0;
-  ROCKET2.xacc = 0;
-  ROCKET2.yvel = 0;
-  ROCKET2.yacc = 0;
-  ROCKET2.rot = Math.PI/2;
-  ROCKET2.tipping = false;
-
   //resets platform spot
   randomizePlatform();
 }
@@ -102,10 +93,8 @@ function handleRocketMovement() {
     PLATFORM.x-=ROCKET1.xvel;
     GAME.background.x-=ROCKET1.xvel/10;
     shiftObstacles(ROCKET1.xvel,0);
-    shiftFuelCans(ROCKET1.xvel,0)
-    // if (!ROCKET1.thrusting){
-    //   ROCKET1.xvel=0;
-    // }
+    shiftFuelCans(ROCKET1.xvel,0);
+
   }
   // if rocket on the left side of screen
   if (ROCKET1.x - ROCKET1.width/2 <0){
@@ -114,9 +103,7 @@ function handleRocketMovement() {
     shiftFuelCans(ROCKET1.xvel,0);
     shiftObstacles(ROCKET1.xvel,0);
     GAME.background.x-=ROCKET1.xvel/10;
-    // if (!ROCKET1.thrusting){
-    //   ROCKET1.xvel=0;
-    // }
+    // M.toast({html: 'Beware: if you go too far, you might not have enough fuel to get back!'});
   }
 
   //if rocket on the bottom of the screen
@@ -224,7 +211,6 @@ function deathMessage (number) {
 
 function giveBackFuel(){
   ROCKET1.fuel = 500;
-  ROCKET2.fuel = 500;
 }
 
 //deathMessage: destription of death

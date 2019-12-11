@@ -46,11 +46,3 @@ function checkCollidePlatform(){
 }
 return false;
 }
-//ROCKET2
-function checkCollidePlatform2(){
-  if (ROCKET2.x < PLATFORM.x + PLATFORM.width +39 && ROCKET2.x + ROCKET2.width  > PLATFORM.x +39 &&
-  ROCKET2.y < PLATFORM.y + PLATFORM.height +107 && ROCKET2.y + ROCKET2.height > PLATFORM.y+107) {
-    return true;
-}
-return false;
-}

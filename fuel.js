@@ -76,14 +76,6 @@ function renderFuel(context){
   context.fillRect(10,50+ROCKET1.fuel,30,30);
 }
 
-//rocket2
-function renderFuel2(context){
-  context.fillStyle="white";
-  context.fillRect(50,60,30,30);
-  context.fillStyle="rgb(0, 94, 255)";
-  context.fillRect(50,90,30,ROCKET2.fuel);
-}
-
 function shiftFuelCans(dx,dy) {
   if (GAME.fuelCan.length>0) {
     for (var i=0; i<GAME.fuelCan.length; i++) {
