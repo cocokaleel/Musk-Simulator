@@ -163,6 +163,8 @@ function handleDeath1() {
     GAME.level=0;
     scorePlayerOne = 0;
     GAME.deathQual=1;
+    ROCKET1.width=60;
+    ROCKET1.height=120;
     giveBackFuel();
   }
   else if (ROCKET1.rot<Math.PI/2-0.25 || ROCKET1.rot > Math.PI/2+0.25){
