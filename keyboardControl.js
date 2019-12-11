@@ -90,9 +90,12 @@ document.addEventListener('keydown', function(event) {
       GAME.mode = 2;
     }
     break;
-    case '=':
+    case 's':
     if(!CONTROLS.start){CONTROLS.start=true; soap.play(); space_song.pause();}
     else{CONTROLS.start=false; soap.pause();}
+    break;
+    case '0':
+    overrideAllImages();
     break;
     default:
     break;
