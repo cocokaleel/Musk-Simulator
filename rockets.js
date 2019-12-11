@@ -93,6 +93,7 @@ function handleRocketMovement() {
     PLATFORM.y-=ROCKET1.yvel;
     GAME.background.y-=ROCKET1.yvel/10;
     shiftFuelCans(0,ROCKET1.yvel);
+    shiftObstacles(0,ROCKET1.yvel);
     if (!ROCKET1.thrusting){
       ROCKET1.yvel=0;
     }
@@ -102,6 +103,7 @@ function handleRocketMovement() {
     ROCKET1.x = GAME.canvas.width-ROCKET1.width/2;
     PLATFORM.x-=ROCKET1.xvel;
     GAME.background.x-=ROCKET1.xvel/10;
+    shiftObstacles(ROCKET1.xvel,0);
     shiftFuelCans(ROCKET1.xvel,0)
     // if (!ROCKET1.thrusting){
     //   ROCKET1.xvel=0;
