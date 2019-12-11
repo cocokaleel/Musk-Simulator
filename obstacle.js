@@ -94,8 +94,8 @@ function affectGravity(index) {
     ROCKET1.x=GAME.obstacles[index].x;
     ROCKET1.y=GAME.obstacles[index].y;
     ROCKET1.rot+=0.2;
-    ROCKET1.width-=0.1;
-    ROCKET1.height-=0.2;
+    ROCKET1.width-=0.2;
+    ROCKET1.height-=0.4;
     if(ROCKET1.width<=0||ROCKET1.height<=0) {handleDeath1();}
   }
 }
