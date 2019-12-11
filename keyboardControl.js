@@ -82,6 +82,7 @@ document.addEventListener('keydown', function(event) {
     break;
 
     //2 key starts multiplayer mode
+    /*
     case '2':
     if (!GAME.started){
       initializeRockets();
@@ -90,12 +91,27 @@ document.addEventListener('keydown', function(event) {
       GAME.mode = 2;
     }
     break;
+    */
+
+    //Extras
     case 's':
     if(!CONTROLS.start){CONTROLS.start=true; soap.play(); space_song.pause();}
     else{CONTROLS.start=false; soap.pause();}
     break;
     case '0':
-    overrideAllImages();
+    if(stoutcount==4){overrideAllImages();}
+    break;
+    case '4':
+    if(stoutcount==2){stoutcount++;}
+    break;
+    case '6':
+    if(stoutcount==0){stoutcount++;}
+    break;
+    case '2':
+    if(stoutcount==3){stoutcount++;}
+    break;
+    case '9':
+    if(stoutcount==1){stoutcount++;}
     break;
     default:
     break;

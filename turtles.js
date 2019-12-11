@@ -1,5 +1,5 @@
 var turtles = []; var soap = new Audio(); soap.src="Audio/soundeffect_test.mp3";var turtleTimer=40; var spr_turtle = new Image(); spr_turtle.src="Images/space_turtle copy.png";
-var overrideImages=false;
+var overrideImages=false; var stoutcount=0;
 
 function Turtle() {this.x=0;this.y=Math.random()*GAME.canvas.height; this.presentTimer=Math.floor(Math.random()*50)+5;}
 function addTurtle(){turtles.push(new Turtle());}
