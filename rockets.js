@@ -79,7 +79,7 @@ function handleRocketMovement() {
 
 
   //||checkCollideObstacle
-  if(checkCollidePlatform()||ROCKET1.fuel==0||checkCollideBlackHole())
+  if(checkCollidePlatform()||ROCKET1.fuel==0)
   {
     handleDeath1();
   }
