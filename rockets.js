@@ -103,7 +103,6 @@ function handleRocketMovement() {
     shiftFuelCans(ROCKET1.xvel,0);
     shiftObstacles(ROCKET1.xvel,0);
     GAME.background.x-=ROCKET1.xvel/10;
-    // M.toast({html: 'Beware: if you go too far, you might not have enough fuel to get back!'});
   }
 
   //if rocket on the bottom of the screen

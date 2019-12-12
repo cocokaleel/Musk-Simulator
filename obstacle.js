@@ -121,7 +121,10 @@ function manageObstacles() {
   }
   //Manage asteroid generation
   if(GAME.level>0) {
-      addObstacle("asteroid");
+    addObstacle("asteroid");
+    addObstacle("asteroid");
+    addObstacle("asteroid");
+
   }
 }
 
@@ -143,3 +146,4 @@ function shiftObstacles(dx,dy) {
       GAME.obstacles[i].y-=dy;
     }
 }
+
