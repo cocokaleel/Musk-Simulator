@@ -33,6 +33,10 @@ if (GAME.paused==false){
      GAME.fuelCan.splice(i,1);
      giveBackFuel();
    }
+   if (!GAME.started) {
+     GAME.fuelCan.splice(i,1);
+     fuelCanAddTimer = 100;
+   }
  }
 }
 }
